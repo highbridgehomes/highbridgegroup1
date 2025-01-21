@@ -14,7 +14,7 @@
   
   .property-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns in grid */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns in gri */
     gap: 20px;
   }
   
