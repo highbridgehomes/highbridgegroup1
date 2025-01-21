@@ -12,7 +12,7 @@ import {
 
 const MagisticLagosPage = () => {
   const [mainImg, setMainImg] = useState(
-    "/assets/images/magistic-lagos-main.jpg"
+    "/assets/images/magestic/magestic.jpg"
   );
 
   const smallImages = [

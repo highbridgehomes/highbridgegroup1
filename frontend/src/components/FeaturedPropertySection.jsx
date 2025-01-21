@@ -70,7 +70,7 @@ const FeaturedPropertySection = () => {
         <Link to="/magistic-lagos" className="property-card">
           <div className="property-inner">
             <div className="property-front">
-              <img src="/assets/images/featured-property2.jpg" alt="Magestic Lagos" />
+              <img src="/assets/images/magestic/magestic.jpg" alt="Magestic Lagos" />
             </div>
             <div className="property-back">
             <h3> Magistic-lagos</h3> {/* Added "Hi" header */}
