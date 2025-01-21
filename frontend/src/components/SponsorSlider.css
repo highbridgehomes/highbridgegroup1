@@ -1,0 +1,88 @@
+.sponsor-slider {
+    width: 100%;
+    overflow: hidden;
+    background-color: #f8f8f8; /* Light background color */
+    padding: 20px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sponsor-slider-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    justify-content: flex-end; /* Align "Brands" text to the right */
+  }
+  
+  .sponsor-label {
+    position: absolute;
+    right: -0.3%; /* Adjust position as needed */
+    margin-top: -5%;
+    z-index: 10;
+    background-color: #007F00; /* Green */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border-radius: 5px; /* Rounded edges for appeal */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    font-size: 2rem; /* Large font size for emphasis */
+    font-weight: bold;
+  }
+  
+  .sponsor-slider-container {
+    display: flex;
+    animation: scroll-left 20s linear infinite; /* Continuous scroll animation */
+  }
+  
+  .sponsor-logo {
+    flex: 0 0 auto;
+    margin: 0 30px; /* Spacing between logos */
+  }
+  
+  .sponsor-logo img {
+    width: 150px; /* Adjust the width of the logos */
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  
+  /* Animation to move the logos from left to right */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+
+  /* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .sponsor-label {
+      font-size: 1.5rem; /* Reduce font size */
+      padding: 8px 15px; /* Adjust padding */
+      top: auto;
+      bottom: 10%; /* Position the label lower on smaller screens */
+      transform: translateY(0); /* Reset vertical transformation */
+      
+    }
+  
+    .sponsor-logo img {
+      width: 120px; /* Reduce logo size */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sponsor-label {
+      font-size: 1.2rem; /* Further reduce font size */
+      padding: 5px 10px; /* Reduce padding */
+      bottom: 5%; /* Adjust position */
+    }
+  
+    .sponsor-logo img {
+      width: 100px; /* Further reduce logo size */
+    }
+  }

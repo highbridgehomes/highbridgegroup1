@@ -1,0 +1,443 @@
+/* styles.css */
+/* General styles */
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    /* Remove max-width property */
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #03083e;
+    color: #fff;
+    height: 100px;
+    padding: 10px 20px;
+    width: 100%; /* Set width to cover full screen */
+}
+  
+  .navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .navbar ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .navbar ul li a:hover {
+    color: #ff9800;
+  }
+
+  
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .hero-text {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .hero-text h1 {
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: #333;
+  }
+  
+  .hero-text p {
+    margin: 0;
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .hero-image {
+    flex: 1;
+    background-size: cover;
+    background-position: right;
+    height: 300px;
+    border-radius: 8px;
+  }
+  
+  .projects {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    background-color: #f2f2f2; /* Light gray background */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .projects h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+    grid-column: 1 / -1;
+  }
+  
+  .project {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .project:hover {
+    transform: translateY(-5px);
+  }
+  
+  .project img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .project-details {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .project-details h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .project-details p {
+    margin-top: 0;
+    color: #666;
+  }
+  
+  .project-details a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .project-details a:hover {
+    background-color: #0056b3;
+  }
+  
+  .about {
+    margin-top: 50px;
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .about h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .profile-image {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .bio {
+    flex: 1;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .contact {
+    margin-top: 50px;
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .contact h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Other styles... */
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 300px; /* Adjust the width as needed */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact-form button {
+    width: 300px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .contact-form button:hover {
+    background-color: #0056b3;
+  }
+
+
+
+
+
+/* Add these styles to the existing CSS file */
+
+.skills {
+    margin-top: 50px;
+    background-color: #f2f2f2; /* Light gray background */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .skills h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Display in a grid of 3 columns */
+    gap: 20px;
+  }
+  
+  .skill {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    position: relative; /* Added relative positioning */
+  }
+  
+  .skill:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .skill p {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .skill-description {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
+  /* Adjusted the visibility of skill description */
+  .skill:hover .skill-description,
+  .skill:hover .skill {
+    opacity: 1;
+  }
+
+
+
+
+
+
+
+
+
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #666;
+    padding: 20px 0; /* Added padding for spacing */
+    background-color: #f9f9f9; /* Added background color for footer */
+    width: 100%; /* Set width to cover full screen */
+}
+  .social-media {
+    margin-top: 20px;
+  }
+  
+  .social-media a {
+    color: #333;
+    text-decoration: none;
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .social-media a:hover {
+    color: #007bff; /* Change color on hover */
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Styles for small screens (phones) */
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .navbar {
+    height: 80px; /* Decrease height of navbar for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .navbar ul li {
+    margin-right: 10px; /* Decrease margin between navbar items for smaller screens */
+  }
+
+  .hero {
+    padding: 20px 10px; /* Adjust padding for smaller screens */
+    flex-direction: column; /* Stack hero content vertically */
+    align-items: center; /* Center hero content horizontally */
+  }
+
+  .hero-image {
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-position: center; /* Center the background image */
+    height: 200px; /* Set a fixed height for the hero image */
+    width: 100%; /* Make the image fill the width of its container */
+    margin-top: 20px; /* Add space between hero image and text */
+    border-radius: 8px; /* Add border-radius for better appearance */
+}
+
+  .hero-text h1 {
+    font-size: 24px; /* Decrease font size of hero heading for smaller screens */
+    margin-bottom: 10px; /* Decrease margin bottom of hero heading for smaller screens */
+  }
+
+  .hero-text p {
+    font-size: 16px; /* Decrease font size of hero text for smaller screens */
+  }
+
+  .hero-image {
+    height: 200px; /* Decrease height of hero image for smaller screens */
+    width: 100%; /* Make hero image fill the width */
+    margin-top: 20px; /* Add space between hero image and text */
+  }
+
+  .projects {
+    display: block; /* Display projects as a block for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .projects h2 {
+    font-size: 24px; /* Decrease font size of projects heading for smaller screens */
+    margin-bottom: 20px; /* Decrease margin bottom of projects heading for smaller screens */
+    text-align: center; /* Center align projects heading */
+  }
+
+  .project {
+    margin-bottom: 20px; /* Add space between projects */
+  }
+
+  .project img {
+    width: 100%; /* Make project images fill the width */
+  }
+
+  .about {
+    padding: 20px 10px; /* Adjust padding for smaller screens */
+    flex-direction: column; /* Stack about content vertically */
+    align-items: center; /* Center about content horizontally */
+  }
+
+  .about h2 {
+    font-size: 24px; /* Decrease font size of about heading for smaller screens */
+    margin-bottom: 20px; /* Decrease margin bottom of about heading for smaller screens */
+  }
+
+  .contact {
+    padding: 20px 10px; /* Adjust padding for smaller screens */
+    flex-direction: column; /* Stack contact content vertically */
+    align-items: center; /* Center contact content horizontally */
+  }
+
+  .contact h2 {
+    font-size: 24px; /* Decrease font size of contact heading for smaller screens */
+    margin-bottom: 20px; /* Decrease margin bottom of contact heading for smaller screens */
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    width: 100%; /* Set width of input fields and button to full width for smaller screens */
+  }
+}

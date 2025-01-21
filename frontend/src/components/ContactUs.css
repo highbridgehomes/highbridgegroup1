@@ -1,0 +1,129 @@
+.contact-us {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .offices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .office {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .office h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .icon {
+    margin-right: 8px;
+    color: green; /* Changed from #0073e6 to green */
+  }
+  
+  .contact-form {
+    margin-top: 40px;
+  }
+  
+  .contact-form h3 {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+  }
+  
+  .btn-submit {
+    background-color: #0073e6;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-submit:hover {
+    background-color: #005bb5;
+  }
+  
+  .map iframe {
+    border: 0;
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .contact-us {
+      padding: 15px;
+    }
+  
+    .offices {
+      grid-template-columns: 1fr;
+    }
+  
+    .office {
+      padding: 15px;
+    }
+  
+    .map iframe {
+      height: 180px; /* Slightly smaller height for better fit */
+    }
+  
+    .contact-form h3 {
+      font-size: 1.2rem;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      padding: 8px;
+    }
+  
+    .btn-submit {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-us {
+      padding: 10px;
+    }
+  
+    .offices {
+      gap: 15px;
+    }
+  
+    .office {
+      padding: 10px;
+    }
+  
+    .contact-form h3 {
+      font-size: 1.1rem;
+    }
+  
+    .btn-submit {
+      font-size: 0.8rem;
+    }
+  }

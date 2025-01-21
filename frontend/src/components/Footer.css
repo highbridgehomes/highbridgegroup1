@@ -1,0 +1,154 @@
+/* Footer Container */
+.footer {
+    background-color: #1a3d2a; /* Dark green background */
+    color: #ffffff; /* White text */
+    padding: 50px 20px;
+    font-family: Arial, sans-serif;
+}
+  
+/* Footer Container Grid Layout */
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 30px;
+}
+  
+/* Footer Logo and Description */
+.footer-about {
+    width: 100%;
+}
+  
+.footer-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+  
+.footer-about p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d3d3d3; /* Light gray text */
+}
+  
+/* Footer Links Section */
+.footer-links {
+    width: 100%;
+}
+  
+.footer-links h3 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+  
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+  
+.footer-links ul li {
+    margin: 8px 0;
+}
+  
+.footer-links ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+  
+.footer-links ul li a:hover {
+    color: #42e64e; /* Green color on hover */
+}
+  
+/* Footer Contact Information */
+.footer-contact {
+    width: 100%;
+}
+  
+.footer-contact h3 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+  
+.footer-contact p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d3d3d3; /* Light gray text */
+}
+  
+.footer-contact a {
+    color: #42e64e; /* Green color for email */
+    text-decoration: none;
+}
+  
+.footer-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Contact Icons */
+.footer-contact .footer-icon {
+    margin-right: 8px;
+    color: #42e64e;
+    vertical-align: middle;
+    font-size: 1.2rem;
+}
+  
+/* Footer Social Icons */
+.footer-social {
+    width: 100%;
+}
+  
+.footer-social h3 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+  
+.social-icons {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.social-icon {
+    color: #ffffff;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+  
+.social-icon:hover {
+    color: #42e64e; /* Green color on hover */
+}
+  
+/* Footer Bottom */
+.footer-bottom {
+    background-color: #145a34; /* Slightly darker green */
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+}
+  
+.footer-bottom p {
+    color: #ffffff;
+    margin: 0;
+}
+  
+@media (max-width: 768px) {
+    .footer-container {
+        display: block;
+    }
+  
+    .footer-about,
+    .footer-links,
+    .footer-contact,
+    .footer-social {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}

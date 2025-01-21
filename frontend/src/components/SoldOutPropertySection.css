@@ -1,0 +1,141 @@
+.featured-properties {
+    padding: 40px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  .featured-properties h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #222;
+  }
+  
+  .property-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns in grid */
+    gap: 20px;
+  }
+  
+  .property-card {
+    width: 100%;
+    height: 420px; /* Adjusted height for better layout balance */
+    perspective: 1000px;
+    text-decoration: none;
+  }
+  
+  .property-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+  
+  .property-card:hover .property-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .property-front,
+  .property-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Ensure images cover the area of the div */
+  .property-front img {
+    width: 100%;
+    height: 100%; /* Ensuring image fills card container */
+    object-fit: cover; /* Cover the area of the div without distorting the image */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    opacity: 1;
+  }
+  
+  .property-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.9);
+    transform: rotateY(180deg);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    max-height: 100%; /* Ensure the back content doesn't exceed the card height */
+    overflow: hidden; /* Prevent overflow */
+  }
+  
+  .property-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0.3;
+    z-index: 0;
+  }
+  
+  .property-description {
+    font-size: 1rem;
+    margin: 0 10px 10px;
+    line-height: 1.5;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    overflow: hidden; /* Prevent overflow */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    display: -webkit-box; /* Enable multi-line ellipsis */
+    -webkit-line-clamp: 3; /* Limit to 3 lines of text */
+    -webkit-box-orient: vertical; /* Required for line clamping */
+  }
+  
+  .property-back h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    margin: 15px 0;
+    z-index: 1;
+    word-wrap: break-word; /* Ensure the text breaks correctly on smaller screens */
+    white-space: normal; /* Allow the text to wrap within the container */
+  }
+  
+  .property-back p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    margin-top: 10px;
+    z-index: 1;
+  }
+  
+  .property-card:hover .property-front img {
+    opacity: 0.3;
+  }
+  
+  @media (max-width: 768px) {
+    .property-grid {
+      grid-template-columns: 1fr; /* 1 column on smaller screens */
+    }
+  
+    .property-card {
+      height: 380px; /* Adjusted height for smaller screens */
+    }
+  
+    .property-description {
+      font-size: 0.9rem;
+    }
+  
+    .property-back h3 {
+      font-size: 1.2rem; /* Reduce font size on smaller screens */
+    }
+  }
