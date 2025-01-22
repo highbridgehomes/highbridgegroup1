@@ -16,17 +16,17 @@ const AboutUs = () => {
               dedication to customer satisfaction.
             </p>
 
-            <div className="image-content">
-                <iframe 
-                  width="560" 
-                  height="315" 
-                  src="https://www.youtube.com/embed/vkF__wRUFKA" 
-                  title="Highbridge Homes Video" 
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen>
-                </iframe>
-              </div>
+            <div className="iframe-container">
+              <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/vkF__wRUFKA" 
+                title="Highbridge Homes Video" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen>
+              </iframe>
+            </div>
 
             <div className="our-values">
               <h2>Our Vision At Highbridge Homes Limited</h2>
@@ -48,8 +48,6 @@ const AboutUs = () => {
                 the dream of affordable luxury homes.
               </p>
 
-              
-
               {/* Our Objectives Section */}
               <h2>Our Objectives</h2>
               <p>
@@ -67,8 +65,6 @@ const AboutUs = () => {
                 <li><AiOutlineStar className="objective-icon" /> To contribute positively to the communities we serve through corporate social responsibility initiatives.</li>
               </ul>
 
-             
-
               {/* Our Awards Section */}
               <h2>Our Awards</h2>
               <p>
@@ -76,10 +72,10 @@ const AboutUs = () => {
                 innovation, and commitment to the real estate sector. Here are some of the awards we've proudly received:
               </p>
 
-               {/* Image after the Awards Section */}
-            <div className="image-after-awards">
-              <img src="/assets/images/award/awardpics.jpg" alt="Highbridge Homes" />
-            </div>
+              {/* Image after the Awards Section */}
+              <div className="image-after-awards">
+                <img src="/assets/images/award/awardpics.jpg" alt="Highbridge Homes" />
+              </div>
               <ul className="awards-list">
                 <li><AiOutlineStar className="award-icon" /> <span className="award-year">2016</span> - Youngest Developer Award</li>
                 <li><AiOutlineStar className="award-icon" /> <span className="award-year">2019</span> - National Outstanding Leadership</li>

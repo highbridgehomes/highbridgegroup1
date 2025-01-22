@@ -8,6 +8,7 @@
     margin-bottom: 1.5rem;
   }
   
+  /* Grid styling for larger screens */
   .services-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -79,4 +80,43 @@
   .service-card-back p {
     margin: 0.5rem 0;
     font-size: 1rem;
+    color: white; /* Text color set to white */
+  }
+  
+  /* Small screen adjustments */
+  @media (max-width: 768px) {
+    .services-title {
+      font-size: 2rem;
+    }
+  
+    .services-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  
+    .service-card-back h3 {
+      font-size: 1.2rem;
+    }
+  
+    .service-card-back p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .services-list {
+      grid-template-columns: 1fr;
+    }
+  
+    .services-title {
+      font-size: 1.8rem;
+    }
+  
+    .service-card-back h3 {
+      font-size: 1rem;
+    }
+  
+    .service-card-back p {
+      font-size: 0.8rem;
+    }
   }

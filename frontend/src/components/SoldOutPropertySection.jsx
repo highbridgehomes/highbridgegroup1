@@ -113,22 +113,27 @@ const SoldOutPropertySection = () => {
   </div>
 </Link>
 
-        <Link to="/garden" className="property-card">
-          <div className="property-inner">
-            <div className="property-front">
-              <img src="/assets/images/farmcity/farmcit.jpg" alt="Highbridge Garden" />
-            </div>
-            <div className="property-back">
-              <h3> HIGHBRIDGE HILLCITY 2 ESTATE</h3>
-              <div className="property-description">
-                <p>
-                  We are thankful to our clients for their trust. It’s been a pleasure to see this property become a success and fulfill their real estate aspirations.
-                </p>
-              </div>
-              <p>View Full Details</p>
-            </div>
-          </div>
-        </Link>
+<Link to="/hilcity" className="property-card">
+  <div className="property-inner">
+    <div className="property-front">
+      <img
+        src="/assets/images/soldout/hilcity.jpg"
+        alt="Highbridge Hillcity 2 Estate"
+      />
+    </div>
+    <div className="property-back">
+      <h3>HIGHBRIDGE HILLCITY 2 ESTATE</h3>
+      <div className="property-description">
+        <p>
+          We are thankful to our clients for their trust. It’s been a pleasure
+          to see this property become a success and fulfill their real estate
+          aspirations.
+        </p>
+      </div>
+      <p>View Full Details</p>
+    </div>
+  </div>
+</Link>
 
         <Link to="/park" className="property-card">
           <div className="property-inner">

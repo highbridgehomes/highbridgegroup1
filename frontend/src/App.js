@@ -21,6 +21,8 @@ import OaklandPage from './pages/OaklandPage'; // import the Oakland page
 import CedarsPage from "./pages/CedarsPage"; // Adjust the path as needed
 import Cedars3Page from "./pages/Cedars3Page"; // Import Cedars3Page
 import FarmcityPlusPage from "./pages/FarmcityPlusPage"; // Import the new Farmcity Plus page
+import ParkPage from "./pages/ParkPage"; // Import the new Park Estate page
+import HighbridgeHillcity from "./pages/HighbridgeHillcity"; // Assuming Hillcity details page
 
 const App = () => {
   return (
@@ -35,6 +37,7 @@ const App = () => {
         <Route path="/highbridge-manor" element={<HighbridgeManorPage />} />
         <Route path="/magistic-lagos" element={<MagisticLagosPage />} />
         <Route path="/farmcity" element={<HighbridgeFarmcityPage />} />
+        <Route path="/park" element={<ParkPage />} /> {/* New route for Park Estate */}
         <Route path="/farmcity-plus" element={<FarmcityPlusPage />} /> {/* New route for Farmcity Plus */}
         <Route path="/residence" element={<HighbridgeResidencePage />} /> {/* New route */}
         <Route path="/garden" element={<HighbridgeGardensPage />} /> {/* New Garden page route */}
@@ -46,6 +49,7 @@ const App = () => {
         <Route path="/oakland" element={<OaklandPage />} /> {/* Add the route */}
         <Route path="/cedars" element={<CedarsPage />} /> {/* Corrected the Cedars route */}
         <Route path="/cedars3" element={<Cedars3Page />} /> {/* New Cedars3 route */}
+        <Route path="/hilcity" element={<HighbridgeHillcity />} />
       </Routes>
     </Router>
   );

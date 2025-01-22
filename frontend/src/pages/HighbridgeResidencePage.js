@@ -11,12 +11,12 @@ import {
 
 const HighbridgeResidencePage = () => {
   const [mainImg, setMainImg] = useState(
-    "/assets/images/highbridge-residence-main.jpg"
+    "/assets/images/residences/residence.jpg" // Updated main image path
   );
 
   const smallImages = [
     "/assets/images/residence/ladyinside.jpg",
-    "/assets/images/residences/residence.jpg",
+    "/assets/images/residences/residece.jpg",
     "/assets/images/residences/residence front.jpg",
     "/assets/images/highbridge-residence-main.jpg",
   ];
@@ -75,8 +75,8 @@ const HighbridgeResidencePage = () => {
                 onClick={() => handleImageClick(img)}
                 style={{
                   cursor: "pointer",
-                  flex: "1 1 80px",
-                  maxWidth: "80px",
+                  flex: "1 1 100px", // Increased from 80px
+                  maxWidth: "100px", // Increased from 80px
                 }}
               >
                 <img

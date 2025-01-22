@@ -20,7 +20,7 @@
   
   .property-card {
     width: 100%;
-    height: 350px; /* Reduced height for better layout balance */
+    height:350px; /* Reduced height for better layout balance */
     perspective: 1000px;
     text-decoration: none;
   }

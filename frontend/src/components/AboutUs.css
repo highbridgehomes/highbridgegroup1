@@ -1,179 +1,122 @@
-/* src/components/AboutUs.css */
+/* General Reset */
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* About Us Section */
 .about-us {
-  padding: 50px 0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
   background-color: #f9f9f9;
+  color: #333;
 }
 
+/* Container */
 .container {
-  width: 80%;
+  max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0 15px;
 }
 
+/* Layout for Content */
 .about-us-content {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 50px;
+  flex-direction: column;
+  gap: 20px;
 }
 
+/* Text Content */
 .text-content {
-  flex: 1;
-  padding: 20px;
-  max-width: 50%;
+  flex: 2;
 }
 
 .text-content h1 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
   color: #333;
+  margin-bottom: 10px;
 }
 
 .text-content p {
-  font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 20px;
+  font-size: 1rem;
   color: #555;
 }
 
-.text-content .our-values h2 {
-  font-size: 2rem;
-  margin-top: 30px;
-  color: #333;
-}
-
-.text-content .our-values p {
-  font-size: 1.1rem;
-  color: #555;
-}
-
-.image-content {
+/* Iframe Container */
+.iframe-container {
   flex: 1;
-  max-width: 45%;
-  text-align: center;
+  margin: 20px 0;
 }
 
-.image-content img {
+.iframe-container iframe {
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 315px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
-/* Objectives Section */
-.our-values h2 {
-  font-size: 24px;
-  color: #333;
-  margin-top: 30px;
-}
-
-.objectives-list {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 10px;
-}
-
-.objectives-list li {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 10px;
-  line-height: 1.6;
-  display: flex;
-  align-items: center;
-}
-
-.objective-icon {
-  color: #4CAF50; /* Green color for the check mark */
-  margin-right: 10px; /* Space between icon and text */
-  font-size: 20px; /* Icon size */
-}
-
-/* Styling for the objectives paragraph */
-.our-values p {
-  font-size: 16px;
-  color: #333;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  text-align: justify;
-}
-
-/* Styling for awards section */
-.awards-list {
+/* Objectives and Awards */
+.objectives-list, .awards-list {
   list-style: none;
   padding: 0;
   margin: 20px 0;
 }
 
-.awards-list li {
-  font-size: 18px;
-  margin: 10px 0;
+.objectives-list li, .awards-list li {
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
+  font-size: 1rem;
+  color: #555;
 }
 
-.award-icon {
-  color: #f39c12; /* Golden color for the icon */
-  font-size: 24px;
+.objective-icon, .award-icon {
+  color: #ffcc00;
   margin-right: 10px;
 }
 
 .award-year {
-  color: rgba(0, 128, 0, 0.836);
   font-weight: bold;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
-/* Responsive Design for Mobile */
-@media screen and (max-width: 768px) {
-.about-us-content {
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 20px;
-}
-
-.text-content {
-  max-width: 100%;
-  padding: 10px;
-}
-
-.text-content h1 {
-  font-size: 1.8rem;
-}
-
-.text-content p {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.text-content .our-values h2 {
-  font-size: 1.4rem;
-  margin-top: 20px;
-}
-
-.text-content .our-values p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.objectives-list li,
-.awards-list li {
-  font-size: 0.9rem;
-}
-
-.image-content {
-  max-width: 100%;
-  margin-top: 20px;
-}
-
-.image-content iframe {
+/* Image Styling */
+.image-after-awards img {
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  max-height: 315px; /* Adjust if needed */
+  max-width: 600px;
+  display: block;
+  margin: 20px auto;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .about-us-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2:1 ratio for text and iframe */
+    gap: 40px;
+    align-items: start; /* Align items at the start of their respective columns */
+  }
+
+  .iframe-container {
+    position: relative; /* Ensures the iframe stays in its column */
+    margin: 0; /* Removes unnecessary margin */
+  }
+
+  .iframe-container iframe {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-content h1 {
+    font-size: 3rem;
+  }
+
+  .text-content p {
+    font-size: 1.1rem;
+  }
 }

@@ -23,19 +23,19 @@ const FeaturedPropertySection = () => {
         </Link>
 
         <Link to="/residence" className="property-card">
-          <div className="property-inner">
-            <div className="property-front">
-              <img src="/assets/images/featured-property2.jpg" alt="Highbridge Residences" />
-            </div>
-            <div className="property-back">
-            <h3>HIGHBRIDGE Residence ESTATE</h3> {/* Added "Hi" header */}
-              <div className="property-description">
-                <p>Highbridge Residences offer contemporary living spaces in a prime location.</p>
-              </div>
-              <p>View Full Details</p>
-            </div>
-          </div>
-        </Link>
+  <div className="property-inner">
+    <div className="property-front">
+      <img src="/assets/images/residences/residence.jpg" alt="Highbridge Residences" />
+    </div>
+    <div className="property-back">
+      <h3>HIGHBRIDGE Residence ESTATE</h3> {/* Added "Hi" header */}
+      <div className="property-description">
+        <p>Highbridge Residences offer contemporary living spaces in a prime location.</p>
+      </div>
+      <p>View Full Details</p>
+    </div>
+  </div>
+</Link>
 
         <Link to="/highbridge-county" className="property-card">
           <div className="property-inner">
