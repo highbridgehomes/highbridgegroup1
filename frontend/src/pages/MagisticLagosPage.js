@@ -53,6 +53,7 @@ const MagisticLagosPage = () => {
             alt="Main Preview"
             style={{
               width: "100%",
+              maxHeight: "300px",  // Adjust the height as needed
               borderRadius: "8px",
               marginBottom: "10px",
             }}

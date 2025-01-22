@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar"; // Adjust the path as per your folder structure
 import Footer from "../components/Footer"; // Adjust the path as per your folder structure
-import { FaMapMarkerAlt } from "react-icons/fa"; // Example icons from React Icons
+import { FaMapMarkerAlt, FaWater, FaLock, FaLightbulb, FaRoad, FaHome } from "react-icons/fa"; // Icons for features
 
-const HighbridgeFarmcityPage = () => {
-  const [mainImg, setMainImg] = useState(
-    "/assets/images/farmcity/farmcity.jpg"
-  );
+const WoodlandExtensionPage = () => {
+  const [mainImg, setMainImg] = useState("/assets/images/soldout/woodland.jpg");
 
   const smallImages = [
-    "/assets/images/highbridge-farmcity-1.jpg",
-    "/assets/images/highbridge-farmcity-2.jpg",
-    "/assets/images/highbridge-farmcity-3.jpg",
-    "/assets/images/highbridge-farmcity-main.jpg",
+    "/assets/images/soldout/woodland.jpg",
+    "/assets/images/soldout/woodland-1.jpg",
+    "/assets/images/soldout/woodland-2.jpg",
   ];
 
   const handleImageClick = (img) => {
@@ -46,7 +43,7 @@ const HighbridgeFarmcityPage = () => {
             alt="Main Preview"
             style={{
               width: "100%",
-              maxHeight: "300px",  // Adjust the height as needed
+              maxHeight: "300px", // Adjust the height as needed
               borderRadius: "8px",
               marginBottom: "10px",
             }}
@@ -95,16 +92,31 @@ const HighbridgeFarmcityPage = () => {
             minWidth: "300px",
           }}
         >
-          <h6>Highbridge Farmcity</h6>
-          <h4>Farmland Survey</h4>
+          <h6>Highbridge Woodland Extension</h6>
+          <h4>Residential Freehold</h4>
+
+           {/* Sold Out Message */}
+           <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
+            SOLD OUT
+          </p>
 
           <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
-            Introductory Price - Initial Deposit: ₦200,000
+            500 Acres: ₦8,000,000 (0-6 months outrightly)
           </p>
 
           <div style={{ marginBottom: "10px" }}>
             <span style={{ fontWeight: "bold" }}>Location:</span>
-            <span> Isiwo, Ogun State</span>
+            <span> Odogbawojo, Epe</span>
+          </div>
+
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{ fontWeight: "bold" }}>Title:</span>
+            <span> FREEHOLD [REGISTERED SURVEY]</span>
+          </div>
+
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{ fontWeight: "bold" }}>Size:</span>
+            <span> 300sqms - ₦1 Million, 600sqms - ₦1.6 Million</span>
           </div>
 
           <button
@@ -122,42 +134,63 @@ const HighbridgeFarmcityPage = () => {
             Contact Agent
           </button>
 
-          <h4 style={{ marginTop: "20px" }}>Pricing</h4>
+          <h4 style={{ marginTop: "20px" }}>Features</h4>
           <ul>
-            <li>250sqm: ₦350,000</li>
-            <li>500sqm: ₦650,000</li>
+            <li>
+              <FaRoad style={{ marginRight: "8px", color: "#FF6347" }} />
+              Good Road Networks
+            </li>
+            <li>
+              <FaWater style={{ marginRight: "8px", color: "#1E90FF" }} />
+              Potable Water
+            </li>
+            <li>
+              <FaLightbulb style={{ marginRight: "8px", color: "#FFD700" }} />
+              Street Lights
+            </li>
+            <li>
+              <FaLock style={{ marginRight: "8px", color: "#32CD32" }} />
+              24/7 Security Surveillance
+            </li>
+            <li>
+              <FaHome style={{ marginRight: "8px", color: "#8A2BE2" }} />
+              Gated Estate
+            </li>
+            <li>
+              <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
+              Prime Location
+            </li>
           </ul>
-          <p style={{ color: "blue", fontWeight: "bold" }}>
-            Special Promo: Buy 1 acre outrightly for ₦3,500,000
-          </p>
 
           <h4 style={{ marginTop: "20px" }}>Landmarks</h4>
           <ul>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Lagos-Ogun Toll Gate
+              Michael Otedola Estate
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Ayetoro Food Market
+              Yaba College of Technology
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Nigeria Breweries
+              PAN Atlantic University
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Ijebu Ode Cattle & Livestock Market
+              Epe Resort & Spa
+            </li>
+            <li>
+              <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
+              SPDL Agrofarm
             </li>
           </ul>
 
           <h4 style={{ marginTop: "20px" }}>Description</h4>
           <p>
-            Highbridge Farmcity offers fertile farmlands in the serene
-            environment of Isiwo, Ogun State. Located near significant landmarks
-            like Ayetoro Food Market and Nigeria Breweries, this property is
-            perfect for agricultural purposes or investment. Take advantage of
-            the special promo and secure your farmland today!
+            Looking for residential/industrial land in Epe? Highbridge Homes presents an excellent opportunity at the Highbridge Woodland Extension. Located in the prime area of Odogbawojo, Epe, this property sits within the northwest quadrant of the Lekki Free Trade Zone, Lagos. The land offers numerous amenities, including good road networks, perimeter fencing, potable water, a sports arena, and 24/7 security surveillance.
+            The property is also in close proximity to key landmarks such as the Michael Otedola Estate, Yaba College of Technology, PAN Atlantic University, Epe Resort & Spa, and SPDL Agrofarm.
+            This is a fantastic investment with high potential for both residential and industrial development. Invest today and secure your future!
           </p>
         </div>
       </section>
@@ -166,4 +199,4 @@ const HighbridgeFarmcityPage = () => {
   );
 };
 
-export default HighbridgeFarmcityPage;
+export default WoodlandExtensionPage;

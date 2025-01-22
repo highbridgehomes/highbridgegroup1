@@ -3,17 +3,15 @@ import Navbar from "../components/Navbar"; // Adjust the path as per your folder
 import Footer from "../components/Footer"; // Adjust the path as per your folder structure
 import { FaMapMarkerAlt, FaWater, FaLock, FaLightbulb, FaRoad, FaHome } from "react-icons/fa"; // Icons for features
 
-const HighbridgeManorPage = () => {
-  const [mainImg, setMainImg] = useState(
-    "/assets/images/highbridge-manor-main.jpg"
-  );
-
-  const smallImages = [
-    "/assets/images/highbridge-manor-1.jpg",
-    "/assets/images/highbridge-manor-2.jpg",
-    "/assets/images/highbridge-manor-3.jpg",
-    "/assets/images/highbridge-manor-main.jpg",
-  ];
+const OaklandPage = () => {
+    const [mainImg, setMainImg] = useState("/assets/images/soldout/oakland.jpg"); // Updated to the provided image
+  
+    const smallImages = [
+      "/assets/images/oakland-1.jpg",
+      "/assets/images/oakland-2.jpg",
+      "/assets/images/oakland-3.jpg",
+      "/assets/images/soldout/oakland.jpg", // Make sure the path is correct for small image display
+    ];
 
   const handleImageClick = (img) => {
     setMainImg(img);
@@ -95,42 +93,44 @@ const HighbridgeManorPage = () => {
             minWidth: "300px",
           }}
         >
-          <h6>Highbridge Manor</h6>
-          <h4>Residential Freehold</h4>
+          <h6>Highbridge Oakland</h6>
+          <h4>Residential/Industrial Land</h4>
 
           <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
-            400sqm: ₦5,000,000 (0-6 months outrightly)
+            SOLD OUT
           </p>
 
           <div style={{ marginBottom: "10px" }}>
             <span style={{ fontWeight: "bold" }}>Location:</span>
-            <span> London Road, Odo-Iragushi, Epe</span>
+            <span> By Atlantic Hall School, Epe, Lagos State</span>
           </div>
 
-          <button
-            onClick={() => (window.location.href = "/contact")}
-            style={{
-              padding: "10px 20px",
-              background: "green",
-              color: "#fff",
-              border: "none",
-              cursor: "pointer",
-              borderRadius: "4px",
-              width: "100%",
-            }}
-          >
-            Contact Agent
-          </button>
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{ fontWeight: "bold" }}>Title:</span>
+            <span> Registered Survey (100% Dry Land)</span>
+          </div>
 
-          <h4 style={{ marginTop: "20px" }}>Features</h4>
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{ fontWeight: "bold" }}>Land Size:</span>
+            <span> 600sqm, 300sqm</span>
+          </div>
+
+          <h4 style={{ marginTop: "20px" }}>Selling Price</h4>
+          <ul>
+            <li>₦1,350,000 per plot (600sqm)</li>
+            <li>₦750,000 per plot (300sqm)</li>
+            <li>Commercial Plot: ₦3,500,000</li>
+          </ul>
+
+          <h4 style={{ marginTop: "20px" }}>Amenities</h4>
           <ul>
             <li>
               <FaRoad style={{ marginRight: "8px", color: "#FF6347" }} />
-              Good Road Networks
+              Good Road Network
             </li>
             <li>
               <FaWater style={{ marginRight: "8px", color: "#1E90FF" }} />
-              Running Water
+              Potable Water
             </li>
             <li>
               <FaLightbulb style={{ marginRight: "8px", color: "#FFD700" }} />
@@ -138,15 +138,11 @@ const HighbridgeManorPage = () => {
             </li>
             <li>
               <FaLock style={{ marginRight: "8px", color: "#32CD32" }} />
-              Security
+              24/7 Security Surveillance
             </li>
             <li>
               <FaHome style={{ marginRight: "8px", color: "#8A2BE2" }} />
-              Gated Estate
-            </li>
-            <li>
-              <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Good Location
+              Perimeter Fencing
             </li>
           </ul>
 
@@ -158,27 +154,42 @@ const HighbridgeManorPage = () => {
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Epe Resort & Spa
+              Epe Resort
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Jubilee Chalets, Epe
+              Odion Igahlo Football Academy
+            </li>
+            <li>
+              <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
+              Lagos Free Trade Zone
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
               Lekki International Airport
             </li>
+            <li>
+              <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
+              Michael Otedola College Of Education
+            </li>
           </ul>
 
           <h4 style={{ marginTop: "20px" }}>Description</h4>
           <p>
-            Highbridge Manor offers premium residential plots in the prime
-            location of Odo-Iragushi, Epe. The estate is designed with modern
-            infrastructure, including good road networks, running water,
-            security, and street lights. Its proximity to landmarks like the
-            Dangote Refinery and Lekki International Airport makes it an
-            excellent investment opportunity. Secure your plot today!
+            HIGHBRIDGE OAKLAND ESTATE offers home seekers and investors an ideal
+            home solution in a serene environment. The estate is free from government
+            acquisition and encumbrances. With plot sizes of 600sqm and 300sqm available,
+            the estate is located by Atlantic Hall School in the historic city of Epe.
+            Offering affordable prices for residential and commercial purposes, it's an
+            excellent investment opportunity.
           </p>
+
+          <h4 style={{ marginTop: "20px" }}>Other Charges</h4>
+          <ul>
+            <li>Developments Levy (To be communicated later)</li>
+            <li>Deed of Assignment: ₦50,000 per plot</li>
+            <li>Survey Fee: ₦150,000 per plot</li>
+          </ul>
         </div>
       </section>
       <Footer />
@@ -186,4 +197,4 @@ const HighbridgeManorPage = () => {
   );
 };
 
-export default HighbridgeManorPage;
+export default OaklandPage;

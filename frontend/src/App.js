@@ -15,7 +15,12 @@ import HighbridgeGardensPage from "./pages/HighbridgeGardensPage";
 import BecomeRealtorPage from "./pages/BecomeRealtorPage"; // Import Become Realtor page
 import DigitalMarketingTrainingPage from "./pages/DigitalMarketingTrainingPage"; // Import new page
 import SiteInspectionPage from "./pages/SiteInspectionPage"; // Import new page
-
+import WoodlandExtensionPage from "./pages/WoodlandExtensionPage"; // Import Woodland Extension page
+import WoodlandPage from "./pages/WoodlandPage"; // Import Woodland Extension page
+import OaklandPage from './pages/OaklandPage'; // import the Oakland page
+import CedarsPage from "./pages/CedarsPage"; // Adjust the path as needed
+import Cedars3Page from "./pages/Cedars3Page"; // Import Cedars3Page
+import FarmcityPlusPage from "./pages/FarmcityPlusPage"; // Import the new Farmcity Plus page
 
 const App = () => {
   return (
@@ -30,11 +35,17 @@ const App = () => {
         <Route path="/highbridge-manor" element={<HighbridgeManorPage />} />
         <Route path="/magistic-lagos" element={<MagisticLagosPage />} />
         <Route path="/farmcity" element={<HighbridgeFarmcityPage />} />
+        <Route path="/farmcity-plus" element={<FarmcityPlusPage />} /> {/* New route for Farmcity Plus */}
         <Route path="/residence" element={<HighbridgeResidencePage />} /> {/* New route */}
         <Route path="/garden" element={<HighbridgeGardensPage />} /> {/* New Garden page route */}
         <Route path="/become-realtor" element={<BecomeRealtorPage />} /> {/* New Become Realtor page */}
         <Route path="/digital-marketing-training" element={<DigitalMarketingTrainingPage />} /> {/* New Route */}
         <Route path="/site-inspection" element={<SiteInspectionPage />} /> {/* New Route */}
+        <Route path="/woodland" element={<WoodlandExtensionPage />} /> {/* Route for Woodland Extension */}
+        <Route path="/woodland2" element={<WoodlandPage />} />
+        <Route path="/oakland" element={<OaklandPage />} /> {/* Add the route */}
+        <Route path="/cedars" element={<CedarsPage />} /> {/* Corrected the Cedars route */}
+        <Route path="/cedars3" element={<Cedars3Page />} /> {/* New Cedars3 route */}
       </Routes>
     </Router>
   );

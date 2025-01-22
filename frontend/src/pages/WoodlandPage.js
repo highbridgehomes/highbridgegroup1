@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar"; // Adjust the path as per your folder structure
 import Footer from "../components/Footer"; // Adjust the path as per your folder structure
-import { FaMapMarkerAlt } from "react-icons/fa"; // Example icons from React Icons
+import { FaMapMarkerAlt, FaWater, FaLock, FaLightbulb, FaRoad, FaHome } from "react-icons/fa"; // Icons for features
 
-const HighbridgeGardensPage = () => {
-  const [mainImg, setMainImg] = useState(
-    "/assets/images/highbridge-gardens/main.jpg"
-  );
-
-  const smallImages = [
-    "/assets/images/highbridge-gardens-1.jpg",
-    "/assets/images/highbridge-gardens-2.jpg",
-    "/assets/images/highbridge-gardens-3.jpg",
-    "/assets/images/highbridge-gardens-4.jpg",
-  ];
+const WoodlandPage = () => {
+    // Set the main image to the new "woodlandepe.jpg" by default
+    const [mainImg, setMainImg] = useState("/assets/images/soldout/woodlandepe.jpg");
+  
+    const smallImages = [
+      "/assets/images/woodland-1.jpg",
+      "/assets/images/woodland-2.jpg",
+      "/assets/images/woodland-3.jpg",
+      "/assets/images/soldout/woodlandepe.jpg",  // Add the main image to the small image list
+    ];
 
   const handleImageClick = (img) => {
     setMainImg(img);
@@ -95,76 +94,94 @@ const HighbridgeGardensPage = () => {
             minWidth: "300px",
           }}
         >
-          <h6>Highbridge Gardens</h6>
-          <h4>Residential & Commercial Property</h4>
+          <h6>Highbridge Woodland</h6>
+          <h4>Residential/Industrial Land</h4>
 
-          
+          <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
+            SOLD OUT
+          </p>
 
           <div style={{ marginBottom: "10px" }}>
             <span style={{ fontWeight: "bold" }}>Location:</span>
-            <span> Ibeju-Lekki, Lagos</span>
+            <span> Odogbawojo, Epe, Lagos State</span>
           </div>
 
-          <h4>Pricing</h4>
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{ fontWeight: "bold" }}>Title:</span>
+            <span> FREEHOLD (Registered Survey) C of O in View</span>
+          </div>
+
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{ fontWeight: "bold" }}>Land Size:</span>
+            <span> 100% Dry Land</span>
+          </div>
+
+          <h4 style={{ marginTop: "20px" }}>Selling Price</h4>
           <ul>
-            <li>300sqm (Residential): ₦10.5M</li>
-            <li>600sqm (Residential): ₦18M</li>
-            <li>1000sqm (Commercial): ₦60M</li>
+            <li>₦500,000 per plot (300sqm)</li>
+            <li>₦800,000 per plot (600sqm)</li>
+            <li>6 Months Plan: ₦1,000,000 (Start with a deposit of ₦200,000)</li>
           </ul>
 
-          
-          
-          <p style={{ color: "blue", fontWeight: "bold" }}>
-           
-          </p>
+          <h4 style={{ marginTop: "20px" }}>Amenities</h4>
+          <ul>
+            <li>
+              <FaRoad style={{ marginRight: "8px", color: "#FF6347" }} />
+              Good Road Network
+            </li>
+            <li>
+              <FaWater style={{ marginRight: "8px", color: "#1E90FF" }} />
+              Potable Water
+            </li>
+            <li>
+              <FaLightbulb style={{ marginRight: "8px", color: "#FFD700" }} />
+              Street Lights
+            </li>
+            <li>
+              <FaLock style={{ marginRight: "8px", color: "#32CD32" }} />
+              24/7 Security Surveillance
+            </li>
+            <li>
+              <FaHome style={{ marginRight: "8px", color: "#8A2BE2" }} />
+              Perimeter Fencing
+            </li>
+          </ul>
 
           <h4 style={{ marginTop: "20px" }}>Landmarks</h4>
           <ul>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              HFP Paving Stone
+              Michael Otedola Estate
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Eleganza Industry City
+              Yaba College of Technology
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Pan Atlantic University
+              PAN Atlantic University
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Eleko Junction
+              Epe Resort & Spa
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Lekki Free Trade Zone
+              SPDL Agrofarm
             </li>
           </ul>
 
           <h4 style={{ marginTop: "20px" }}>Description</h4>
           <p>
-            Highbridge Gardens offers both residential and commercial plots in
-            the rapidly developing area of Ibeju-Lekki, Lagos. Surrounded by
-            major landmarks such as Eleganza Industry City and Pan Atlantic
-            University, this is the ideal location for investment or residential
-            development.
+            Located in Odogbawojo, Epe, Highbridge Woodland offers a prime
+            location for residential and industrial purposes. This estate sits
+            in the northwest quadrant of the Lekki Free Trade Zone, which enjoys
+            the benefits of a free trade zone. With amenities like perimeter
+            fencing, good road networks, potable water, and 24/7 security, this
+            land is perfect for future developments. The property is close to key
+            landmarks like Epe Resort & Spa, Michael Otedola Estate, and PAN
+            Atlantic University, making it an attractive investment opportunity.
           </p>
-
-          <button
-            onClick={() => (window.location.href = "/contact")}
-            style={{
-              padding: "10px 20px",
-              background: "green",
-              color: "#fff",
-              border: "none",
-              cursor: "pointer",
-              borderRadius: "4px",
-              width: "100%",
-            }}
-          >
-            Contact Agent
-          </button>
         </div>
       </section>
       <Footer />
@@ -172,4 +189,4 @@ const HighbridgeGardensPage = () => {
   );
 };
 
-export default HighbridgeGardensPage;
+export default WoodlandPage;

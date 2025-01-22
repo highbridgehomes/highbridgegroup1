@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar"; // Adjust the path as per your folder structure
-import Footer from "../components/Footer"; // Adjust the path as per your folder structure
-import { FaMapMarkerAlt } from "react-icons/fa"; // Example icons from React Icons
+import Navbar from "../components/Navbar"; // Adjust the path as needed
+import Footer from "../components/Footer"; // Adjust the path as needed
+import { FaMapMarkerAlt, FaWater, FaRoad, FaLock, FaPowerOff } from "react-icons/fa"; // Icons for features
 
-const HighbridgeGardensPage = () => {
-  const [mainImg, setMainImg] = useState(
-    "/assets/images/highbridge-gardens/main.jpg"
-  );
+const Cedars3Page = () => {
+  // Set the main image to the new default image (/assets/images/soldout/cedar2.jpg)
+  const [mainImg, setMainImg] = useState("/assets/images/soldout/cedar2.jpg");
 
+  // Update smallImages array
   const smallImages = [
-    "/assets/images/highbridge-gardens-1.jpg",
-    "/assets/images/highbridge-gardens-2.jpg",
-    "/assets/images/highbridge-gardens-3.jpg",
-    "/assets/images/highbridge-gardens-4.jpg",
+    "/assets/images/cedar3-1.jpg",
+    "/assets/images/cedar3-2.jpg",
+    "/assets/images/cedar3-3.jpg",
+    "/assets/images/cedar3-4.jpg",
   ];
 
   const handleImageClick = (img) => {
@@ -46,7 +46,7 @@ const HighbridgeGardensPage = () => {
             alt="Main Preview"
             style={{
               width: "100%",
-              maxHeight: "300px",  // Adjust the height as needed
+              maxHeight: "300px", // Adjust the height as needed
               borderRadius: "8px",
               marginBottom: "10px",
             }}
@@ -95,76 +95,83 @@ const HighbridgeGardensPage = () => {
             minWidth: "300px",
           }}
         >
-          <h6>Highbridge Gardens</h6>
-          <h4>Residential & Commercial Property</h4>
+          <h6>Highbridge Cedars2</h6>
+          <h4>Residential/Industrial Land</h4>
 
-          
+          <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
+            SOLDOUT
+          </p>
 
           <div style={{ marginBottom: "10px" }}>
             <span style={{ fontWeight: "bold" }}>Location:</span>
-            <span> Ibeju-Lekki, Lagos</span>
+            <span> Ketu Epe Expressway</span>
           </div>
 
-          <h4>Pricing</h4>
+          <div style={{ marginBottom: "10px" }}>
+            <span style={{ fontWeight: "bold" }}>Title:</span>
+            <span> Registered Survey (100% Dry Land)</span>
+          </div>
+
+          <h4 style={{ marginTop: "20px" }}>Selling Price</h4>
           <ul>
-            <li>300sqm (Residential): ₦10.5M</li>
-            <li>600sqm (Residential): ₦18M</li>
-            <li>1000sqm (Commercial): ₦60M</li>
+            <li>₦1,800,000 per plot (300sqm)</li>
+            <li>₦3,000,000 per plot (500sqm)</li>
+            <li>₦10,000,000 per Commercial plot (1000sqm)</li>
           </ul>
 
-          
-          
-          <p style={{ color: "blue", fontWeight: "bold" }}>
-           
-          </p>
+          <h4 style={{ marginTop: "20px" }}>Amenities</h4>
+          <ul>
+            <li>
+              <FaRoad style={{ marginRight: "8px", color: "#FF6347" }} />
+              Motorable Good Road Network
+            </li>
+            <li>
+              <FaWater style={{ marginRight: "8px", color: "#1E90FF" }} />
+              Potable Water
+            </li>
+            <li>
+              <FaLock style={{ marginRight: "8px", color: "#32CD32" }} />
+              Perimeter Fencing
+            </li>
+            <li>
+              <FaPowerOff style={{ marginRight: "8px", color: "#FFD700" }} />
+              24/7 Power Supply
+            </li>
+          </ul>
 
           <h4 style={{ marginTop: "20px" }}>Landmarks</h4>
           <ul>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              HFP Paving Stone
+              Government College, Ketu
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Eleganza Industry City
+              Epe Resort & Spa
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Pan Atlantic University
+              LASG Centre Food Security System
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Eleko Junction
+              Psychiatric and Rehabilitation Centre
             </li>
             <li>
               <FaMapMarkerAlt style={{ marginRight: "8px", color: "#FF6347" }} />
-              Lekki Free Trade Zone
+              Isimi Lagos
             </li>
           </ul>
 
           <h4 style={{ marginTop: "20px" }}>Description</h4>
           <p>
-            Highbridge Gardens offers both residential and commercial plots in
-            the rapidly developing area of Ibeju-Lekki, Lagos. Surrounded by
-            major landmarks such as Eleganza Industry City and Pan Atlantic
-            University, this is the ideal location for investment or residential
-            development.
+            HIGHBRIDGE CEDARS 3 ESTATE offers you the opportunity to create your
+            legacy with this blank canvas. It's your chance to build your dream
+            home and shape your future. Located in Ketu Epe, the land is positioned
+            in a rapidly growing area, ensuring a high return on investment. With
+            convenient access to key landmarks, it's an investment that will last
+            for generations to come.
           </p>
-
-          <button
-            onClick={() => (window.location.href = "/contact")}
-            style={{
-              padding: "10px 20px",
-              background: "green",
-              color: "#fff",
-              border: "none",
-              cursor: "pointer",
-              borderRadius: "4px",
-              width: "100%",
-            }}
-          >
-            Contact Agent
-          </button>
         </div>
       </section>
       <Footer />
@@ -172,4 +179,4 @@ const HighbridgeGardensPage = () => {
   );
 };
 
-export default HighbridgeGardensPage;
+export default Cedars3Page;
