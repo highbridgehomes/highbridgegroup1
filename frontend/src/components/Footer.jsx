@@ -64,16 +64,16 @@ const Footer = () => {
         <div className="footer-social">
           <h3>Follow Us</h3>
           <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href="https://web.facebook.com/highbridgeltd" className="social-icon">
               <FaFacebook />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href="https://www.youtube.com/@highbridgetv5660 " target="_blank" rel="noopener noreferrer" className="social-icon">
               <FaYoutube />
             </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href="https://x.com/Highbridge_ltd " target="_blank" rel="noopener noreferrer" className="social-icon">
               <FaTwitter />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href="https://www.instagram.com/highbridge_homesltd/  " target="_blank" rel="noopener noreferrer" className="social-icon">
               <FaInstagram />
             </a>
             <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" className="social-icon">

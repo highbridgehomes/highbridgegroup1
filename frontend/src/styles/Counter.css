@@ -1,0 +1,73 @@
+/* src/styles/Counter.css */
+
+/* Basic setup for counter grid */
+.counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 10px; /* Adjusted gap between items */
+    padding: 15px; /* Padding around the grid */
+  }
+  
+  /* Style for counter item */
+  .counter-item {
+    text-align: center;
+    padding: 15px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    opacity: 1; /* Keep initial opacity as 1 */
+    transform: translateY(20px); /* Start slightly below */
+    transition: all 0.6s ease-out; /* Smooth transition for opacity and position */
+  }
+  
+  /* Animation for showing counters when they come into view */
+  .counter-item.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Move to original position */
+  }
+  
+  /* Styling for number */
+  .count {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #2c3e50;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  
+  /* Styling for small screen sizes */
+  @media (max-width: 768px) {
+    .counter-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 10px;
+    }
+  
+    .counter-item {
+      padding: 12px;
+    }
+  
+    .count {
+      font-size: 3rem;
+    }
+  
+    .counter-item p {
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* Styling for very small screens */
+  @media (max-width: 480px) {
+    .counter-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  
+    .count {
+      font-size: 2.5rem;
+    }
+  
+    .counter-item p {
+      font-size: 1.1rem;
+    }
+  }

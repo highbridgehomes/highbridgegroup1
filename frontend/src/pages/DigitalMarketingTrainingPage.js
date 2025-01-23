@@ -8,7 +8,7 @@ const DigitalMarketingTrainingPage = () => {
   return (
     <>
       <Navbar /> {/* Invoke Navbar */}
-      <HeroPage /> {/* Invoke HeroPage */}
+      
       <DigitalMarketingTraining /> {/* Invoke DigitalMarketingTraining */}
       <Footer /> {/* Invoke Footer */}
     </>

@@ -1,83 +1,25 @@
-/* src/pages/Home.css */
-.about-us-brief {
-    padding: 40px 0;
-    background-color: #f9f9f9;
-    text-align: center;
-  }
-  
-  .about-us-brief .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .about-us-brief h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .about-us-brief .about-us-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns for text and image */
-    gap: 20px; /* Adds space between the text and image */
-    align-items: center; /* Vertically centers content in grid cells */
-    justify-items: center; /* Centers content horizontally in each grid item */
-    flex-wrap: wrap; /* Ensure it adjusts well on smaller screens */
-  }
-  
-  .about-us-brief .about-us-text {
-    text-align: left; /* Align text to the left */
-    padding-right: 20px;
-  }
-  
-  .about-us-brief .about-us-text h2 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .about-us-brief .about-us-text p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-  
-  .about-us-brief .about-us-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better appearance */
-  }
-  
-  .read-more-link {
-    font-size: 1rem;
-    color: green; /* Green color for the "Read More" link */
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .read-more-link:hover {
-    text-decoration: underline;
-  }
-  
-  /* Media Query for Small Screens */
-  @media (max-width: 768px) {
-    .about-us-brief .about-us-content {
-      grid-template-columns: 1fr; /* Stack the content vertically on smaller screens */
-      text-align: center; /* Center text on smaller screens */
-    }
-  
-    .about-us-brief .about-us-text,
-    .about-us-brief .about-us-image {
-      width: 100%; /* Full width on smaller screens */
-      padding-right: 0; /* Remove padding on smaller screens */
-    }
-  
-    .about-us-brief .about-us-image img {
-      width: 80%; /* Limit image width on small screens */
-      margin: 0 auto; /* Center image */
-      display: block; /* Ensure it's a block-level element */
-    }
-  
-    .read-more-link {
-      font-size: 1.2rem; /* Make the "Read More" link slightly larger on small screens */
-    }
-  }
+/* Add animation for header */
+
+/* Add animation for HeroPage */
+.hero-page {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-page.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth scroll-triggered animations */
+.scroll-element {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.scroll-element.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}

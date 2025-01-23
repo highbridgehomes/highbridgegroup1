@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./FeaturedPropertySection.css";
 
-const FeaturedPropertySection = () => {
+const FeaturedPropertySection2= () => {
   return (
     <section className="featured-properties">
       <h2>Our Selling Estates</h2>
@@ -22,6 +22,7 @@ const FeaturedPropertySection = () => {
           </div>
         </Link>
 
+       
         <Link to="/residence" className="property-card">
   <div className="property-inner">
     <div className="property-front">
@@ -116,4 +117,4 @@ const FeaturedPropertySection = () => {
   );
 };
 
-export default FeaturedPropertySection;
+export default FeaturedPropertySection2;
