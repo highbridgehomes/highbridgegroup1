@@ -1,0 +1,128 @@
+.report-list-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #005a24; /* Green background */
+    color: #ffffff; /* White text for better contrast */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the logo */
+.report-list-container img {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+    max-height: 80px;
+}
+
+
+h2 {
+    text-align: center;
+    color: #ffffff; /* White text */
+    margin-bottom: 20px;
+    font-size: 24px; /* Larger font for readability */
+    font-weight: 600; /* Slightly bolder text for prominence */
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #006400; /* Darker green background for the table */
+    border-radius: 8px; /* Rounded corners for the table */
+    overflow: hidden; /* Prevent borders from being cut off on small screens */
+}
+
+.report-table th,
+.report-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    color: #ffffff; /* White text for table cells */
+}
+
+.report-table th {
+    background-color: #5c6bc0; /* Color for header */
+    color: white;
+    font-size: 16px; /* Slightly larger text for headers */
+}
+
+.report-table tr:nth-child(even) {
+    background-color: #004d00; /* Slightly darker green for even rows */
+}
+
+.report-table tr:hover {
+    background-color: #003d00; /* Darker green for hover effect */
+}
+
+.report-table td {
+    color: #ffffff; /* White text in table rows */
+    font-size: 14px; /* Ensure text remains legible */
+}
+
+/* Responsive Styles for Small Screens */
+@media (max-width: 768px) {
+    .report-list-container {
+        padding: 18px;
+        max-width: 100%; /* Ensure container scales with screen size */
+    }
+
+    .logo {
+        width: 130px;
+    }
+
+    h2 {
+        font-size: 22px; /* Adjust header size for smaller screens */
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 10px;
+        font-size: 15px; /* Slightly smaller text for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .report-list-container {
+        padding: 15px;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    h2 {
+        font-size: 20px; /* Larger font for small screens to keep readability */
+    }
+
+    .report-table th,
+    .report-table td {
+        padding: 8px;
+        font-size: 14px; /* Ensure text fits properly */
+    }
+
+    .report-table {
+        font-size: 14px; /* Adjust font size for better readability */
+    }
+
+    .report-table th {
+        font-size: 15px; /* Increase header size for clarity */
+    }
+}
+
+/* Additional Professional Styling */
+.report-table tr:nth-child(odd) {
+    background-color: #003c00; /* Darker green for odd rows for better contrast */
+}
+
+.report-table td {
+    font-size: 14px; /* Ensures consistency across various screen sizes */
+}
+
+/* Smooth transitions for hover effects */
+.report-table tr {
+    transition: background-color 0.3s ease;
+}

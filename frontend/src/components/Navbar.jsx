@@ -35,6 +35,8 @@ const Navbar = () => {
           <li><a href="/properties">Properties</a></li>
           <li><a href="/events">Events</a></li> {/* New Event Link */}
           <li><a href="/contact">Contact</a></li>
+          
+          
           <li 
             className="dropdown" 
             onMouseEnter={handleMouseEnter} 

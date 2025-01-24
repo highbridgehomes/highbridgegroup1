@@ -3,7 +3,7 @@
     padding: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    background: linear-gradient(135deg, #4caf50, #81c784); /* Green gradient */
+    background-color: #005F00; /* Darker green */
     border-radius: 12px; /* Rounded corners */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   }

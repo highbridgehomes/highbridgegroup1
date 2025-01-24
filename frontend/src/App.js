@@ -25,8 +25,12 @@ import ParkPage from "./pages/ParkPage";
 import HighbridgeHillcity from "./pages/HighbridgeHillcity";
 import PropertiesPage from "./pages/PropertiesPage";
 import AllTeamsPage from "./pages/AllTeamsPage"; // Import the AllTeamsPage component
+import CreateReport from "./components/CreateReport"; // Import CreateReport component
+import ReportList from "./components/ReportList"; // Import ReportList component
+
 
 const App = () => {
+  
   return (
     <Router>
       <ScrollToTop /> {/* Add the ScrollToTop component here */}
@@ -55,7 +59,10 @@ const App = () => {
         <Route path="/hilcity" element={<HighbridgeHillcity />} />
         <Route path="/properties" element={<PropertiesPage />} />
         <Route path="/all-teams" element={<AllTeamsPage />} /> {/* New route for all teams */}
-        
+         {/* Report Management Routes */}
+         <Route path="/create-report" element={<CreateReport />} /> {/* Route for creating reports */}
+        <Route path="/reports" element={<ReportList />} /> {/* Route for viewing all reports */}
+
       </Routes>
     </Router>
   );
