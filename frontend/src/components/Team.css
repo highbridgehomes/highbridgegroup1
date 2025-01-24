@@ -1,0 +1,110 @@
+/* General Container */
+.team-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #4caf50, #81c784); /* Green gradient */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  
+  .team-title {
+    font-size: 36px; /* Larger font size */
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white; /* Text color for contrast */
+    text-transform: uppercase; /* Uppercase for emphasis */
+    letter-spacing: 2px; /* Spacing for elegance */
+  }
+  
+  /* Grid Layout */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px; /* Increased gap for spacing */
+  }
+
+
+
+  /* Button Container */
+.team-button-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  /* Button Styling */
+  .team-button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: #4caf50; /* Green button color */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Hover Effect */
+  .team-button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+    transform: scale(1.05); /* Slight enlargement */
+  }
+  
+  @media (max-width: 1024px) {
+    /* Tablet Layout */
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* Mobile Layout */
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Individual Cards */
+  .team-card {
+    text-align: center;
+    border: none;
+    border-radius: 12px; /* Rounded corners for cards */
+    padding: 20px;
+    background-color: white; /* White background for contrast */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  }
+  
+  .team-card:hover {
+    transform: translateY(-10px); /* Slight lift effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Elevated shadow */
+  }
+  
+  /* Larger Circular Image */
+  .team-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+    border: 4px solid #4caf50; /* Border matches the green theme */
+  }
+  
+  /* Team Member Details */
+  .team-name {
+    font-size: 22px; /* Larger font */
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333; /* Darker color for readability */
+  }
+  
+  .team-role {
+    font-size: 18px; /* Slightly larger font */
+    color: #555; /* Medium gray for a professional look */
+    font-style: italic; /* Italic for elegance */
+  }

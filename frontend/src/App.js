@@ -24,6 +24,7 @@ import FarmcityPlusPage from "./pages/FarmcityPlusPage";
 import ParkPage from "./pages/ParkPage";
 import HighbridgeHillcity from "./pages/HighbridgeHillcity";
 import PropertiesPage from "./pages/PropertiesPage";
+import AllTeamsPage from "./pages/AllTeamsPage"; // Import the AllTeamsPage component
 
 const App = () => {
   return (
@@ -53,6 +54,8 @@ const App = () => {
         <Route path="/cedars3" element={<Cedars3Page />} />
         <Route path="/hilcity" element={<HighbridgeHillcity />} />
         <Route path="/properties" element={<PropertiesPage />} />
+        <Route path="/all-teams" element={<AllTeamsPage />} /> {/* New route for all teams */}
+        
       </Routes>
     </Router>
   );

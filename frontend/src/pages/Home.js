@@ -8,7 +8,8 @@ import Services2 from "../components/Services2";
 import Footer from "../components/Footer";
 import ScrollElement from "../components/ScrollElement";
 import CounterGrid from "../components/CounterGrid";
-import FAQ from "../components/FAQ"; // Import the FAQ component
+import FAQ from "../components/FAQ";
+import ExecutiveTeam from "../components/ExecutiveTeam"; // Import the ExecutiveTeam component
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
       <Navbar />
       <HeroPage />
       <SponsorSlider />
-      <CounterGrid /> {/* Add the CounterGrid here */}
+      <CounterGrid />
       <ScrollElement>
         <About />
       </ScrollElement>
@@ -26,7 +27,9 @@ const Home = () => {
       <ScrollElement>
         <Services2 />
       </ScrollElement>
-      {/* Add FAQ section here with ScrollElement */}
+      <ScrollElement>
+        <ExecutiveTeam /> {/* Add ExecutiveTeam component here */}
+      </ScrollElement>
       <ScrollElement>
         <FAQ />
       </ScrollElement>
