@@ -22,11 +22,11 @@ const Featured2 = () => {
                 <img src={Kitchen} alt='' />
                 <img src={Bathroom} alt='' />
                 <div className='span-3 img-details'>
-                    <div className='top'>
-                        <h2>Abijo G.R.A, Ibeju-Lekki, Lagos State</h2>
-                        <p>Outright Payment Only</p>
-                        <p className='price'>₦70,000,000</p>
-                    </div>
+                <div className='top'>
+  <h2 style={{ color: 'black' }}>Abijo G.R.A, Ibeju-Lekki, Lagos State</h2>
+  <p>Outright Payment Only</p>
+  <p className='price'>₦70,000,000</p>
+</div>
                     <div className='info-grid'>
                         <div>
                             <div className='info'>

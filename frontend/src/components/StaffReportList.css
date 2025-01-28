@@ -1,0 +1,98 @@
+.staff-report-list-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #013220; /* Deep green color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
+  
+  h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.75rem;
+  }
+  
+  .staff-report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .staff-report-table th,
+  .staff-report-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    color: #fff;
+  }
+  
+  .staff-report-table th {
+    font-weight: bold;
+  }
+  
+  .staff-report-table input {
+    width: 100%;
+    padding: 5px;
+    margin: 2px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 1024px) {
+    .staff-report-table {
+      font-size: 14px;
+    }
+  
+    .staff-report-table th,
+    .staff-report-table td {
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .staff-report-list-container {
+      padding: 15px;
+    }
+  
+    .staff-report-table {
+      font-size: 12px;
+    }
+  
+    .staff-report-table th,
+    .staff-report-table td {
+      padding: 6px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .staff-report-list-container {
+      padding: 10px;
+    }
+  
+    .staff-report-table {
+      font-size: 10px;
+    }
+  
+    .staff-report-table th,
+    .staff-report-table td {
+      padding: 5px;
+    }
+  
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+  
+  /* New CSS to adjust logo size */
+  .staff-report-list-container img {
+    max-width: 200px;  /* Adjust this value to make the logo smaller */
+    width: 100%; /* Make the logo responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Removes any extra space below the image */
+    margin: 0 auto 20px; /* Centers the image and adds spacing below */
+  }

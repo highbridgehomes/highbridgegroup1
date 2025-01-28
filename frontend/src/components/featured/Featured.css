@@ -73,7 +73,7 @@
     .featured .container {
         --num-cols: 2;
         --row-height: 200px;
-        --grap: .5rem;
+        --grap: .9rem;
     }
 
     .span-3 {
@@ -184,5 +184,4 @@
 
 
 
-
-
+/* Styles for 400px to 300px screen widths */

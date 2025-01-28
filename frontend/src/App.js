@@ -27,6 +27,10 @@ import PropertiesPage from "./pages/PropertiesPage";
 import AllTeamsPage from "./pages/AllTeamsPage"; // Import the AllTeamsPage component
 import CreateReport from "./components/CreateReport"; // Import CreateReport component
 import ReportList from "./components/ReportList"; // Import ReportList component
+import AddInventory from "./components/AddInventory"; // New import for AddInventory
+import EnergyInventoryList from './components/EnergyInventoryList';
+import CreateStaffReport from "./components/CreateStaffReport"; // Import CreateStaffReport component
+import StaffReportList from "./components/StaffReportList"; // Import StaffReportList componen
 
 
 const App = () => {
@@ -62,6 +66,13 @@ const App = () => {
          {/* Report Management Routes */}
          <Route path="/create-report" element={<CreateReport />} /> {/* Route for creating reports */}
         <Route path="/reports" element={<ReportList />} /> {/* Route for viewing all reports */}
+        {/* Add Inventory Route */}
+        <Route path="/add-inventory" element={<AddInventory />} /> {/* Route for adding inventory */}
+        <Route path="/energy-inventory-list" element={<EnergyInventoryList />} /> {/* Energy Inventory List route */}
+
+        {/* Staff Report Management Routes */}
+        <Route path="/create-staff-report" element={<CreateStaffReport />} /> {/* Route for creating staff reports */}
+        <Route path="/staff-reports" element={<StaffReportList />} /> {/* Route for viewing all staff reports */}
 
       </Routes>
     </Router>
