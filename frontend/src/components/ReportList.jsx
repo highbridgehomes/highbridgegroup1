@@ -21,7 +21,7 @@ const ReportList = () => {
   return (
     <div className="report-list-container">
        <img src="/assets/images/logo/highbridge2.png" alt="Highbridge Homes Logo" />
-      <h2 style={{ color: '#ffffff' }}>Create a New Report</h2>
+      <h2 style={{ color: '#ffffff' }}>Staff Weekly Reportlist</h2>
       <table className="report-table">
         <thead>
           <tr>

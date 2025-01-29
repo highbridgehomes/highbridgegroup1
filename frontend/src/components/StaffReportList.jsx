@@ -4,87 +4,89 @@ import './StaffReportList.css';
 
 const StaffReportList = () => {
   const [staffReports, setStaffReports] = useState([]);
-  const [timeOut, setTimeOut] = useState('');
-  const [isEditableTimeOut, setIsEditableTimeOut] = useState(false);
+  const [timeOutValues, setTimeOutValues] = useState({});
   const [currentDateTime, setCurrentDateTime] = useState('');
-  const [currentPage, setCurrentPage] = useState(1); // Track current page
-  const reportsPerPage = 12; // Changed to 12 reports per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const reportsPerPage = 12;
 
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      setCurrentDateTime(now.toLocaleString());
+      setCurrentDateTime(now.toLocaleString('en-NG', { timeZone: 'Africa/Lagos' }));
     }, 1000);
-
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const currentTime = new Date();
-    const currentHour = currentTime.getHours();
-    const isAfter6PM = currentHour >= 18;
-    const isBeforeMidnight = currentHour < 24;
-
-    setIsEditableTimeOut(isAfter6PM && isBeforeMidnight);
-
     axios.get('http://localhost:5000/api/staff-reports')
       .then((response) => {
         setStaffReports(response.data);
+
+        // Initialize timeOutValues with existing timeOut data
+        const initialTimeOutValues = response.data.reduce((acc, report) => {
+          acc[report._id] = report.timeOut || ''; // Keep the existing value if available
+          return acc;
+        }, {});
+        setTimeOutValues(initialTimeOutValues);
       })
       .catch((error) => {
         console.error('Error fetching staff reports:', error);
       });
-
   }, []);
 
+  const formatTime = (time) => {
+    if (!time) return 'N/A';
+    return new Date(`1970-01-01T${time}`).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    });
+  };
+
+  const handleTimeOutChange = (reportId, value) => {
+    setTimeOutValues((prev) => ({
+      ...prev,
+      [reportId]: value,
+    }));
+  };
+
   const handleTimeOutSubmit = async (reportId) => {
-    if (isEditableTimeOut) {
-      try {
-        const response = await axios.put(`http://localhost:5000/api/staff-reports/${reportId}`, {
-          timeOut: timeOut,
-        });
-        const updatedReports = staffReports.map(report =>
-          report._id === reportId ? { ...report, timeOut } : report
-        );
-        setStaffReports(updatedReports);
-        alert('TimeOut recorded successfully!');
-      } catch (error) {
-        console.error('Error updating timeOut:', error);
-        alert('Failed to record timeOut!');
+    try {
+      if (!timeOutValues[reportId]) {
+        alert('Please enter a valid Time Out');
+        return;
       }
-    } else {
-      alert('You can only time out between 6 PM and Midnight.');
+
+      await axios.put(`http://localhost:5000/api/staff-reports/${reportId}`, {
+        timeOut: timeOutValues[reportId],
+      });
+
+      // Persist the saved Time Out value in staffReports state
+      const updatedReports = staffReports.map((report) =>
+        report._id === reportId ? { ...report, timeOut: timeOutValues[reportId] } : report
+      );
+      setStaffReports(updatedReports);
+
+      alert('TimeOut recorded successfully!');
+    } catch (error) {
+      console.error('Error updating timeOut:', error);
+      alert('Failed to record TimeOut!');
     }
   };
 
-  // Calculate the current page's reports
   const indexOfLastReport = currentPage * reportsPerPage;
   const indexOfFirstReport = indexOfLastReport - reportsPerPage;
   const currentReports = staffReports.slice(indexOfFirstReport, indexOfLastReport);
 
-  // Handle pagination
-  const nextPage = () => {
-    if (currentPage < Math.ceil(staffReports.length / reportsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
   return (
     <div className="staff-report-list-container">
-      {/* Styled Current Date and Time */}
       <div style={styles.dateTimeContainer}>
         <h3 style={styles.dateTimeHeading}>Current Date & Time</h3>
         <p style={styles.dateTimeText}>{currentDateTime}</p>
       </div>
 
       <img src="/assets/images/logo/highbridge2.png" alt="Highbridge Homes Logo" />
-      <h2 style={{ color: '#ffffff' }}>Staff Attendance Reportlists</h2>
+      <h2 style={{ color: '#ffffff' }}>Staff Attendance Report List</h2>
       <table className="staff-report-table">
         <thead>
           <tr>
@@ -110,17 +112,13 @@ const StaffReportList = () => {
               <td>{report.email}</td>
               <td>{report.mobileNumber}</td>
               <td>{report.privateNote}</td>
-              <td>{report.timeIn}</td>
+              <td>{formatTime(report.timeIn)}</td>
               <td>
-                {isEditableTimeOut ? (
-                  <input
-                    type="time"
-                    value={timeOut}
-                    onChange={(e) => setTimeOut(e.target.value)}
-                  />
-                ) : (
-                  <span style={{ color: 'red' }}>Not Editable</span>
-                )}
+                <input
+                  type="time"
+                  value={timeOutValues[report._id] || ''}
+                  onChange={(e) => handleTimeOutChange(report._id, e.target.value)}
+                />
               </td>
               <td>
                 <button onClick={() => handleTimeOutSubmit(report._id)}>
@@ -132,34 +130,44 @@ const StaffReportList = () => {
         </tbody>
       </table>
 
-      {/* Pagination Controls */}
       <div className="pagination">
-        <button onClick={prevPage} disabled={currentPage === 1}>Previous</button>
-        <button onClick={nextPage} disabled={currentPage === Math.ceil(staffReports.length / reportsPerPage)}>Next</button>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={() => setCurrentPage((prev) =>
+            Math.min(prev + 1, Math.ceil(staffReports.length / reportsPerPage))
+          )}
+          disabled={currentPage === Math.ceil(staffReports.length / reportsPerPage)}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
 };
 
-// Inline styles for the date and time
 const styles = {
   dateTimeContainer: {
-    backgroundColor: '#2D3748', // Dark gray background
-    padding: '15px 20px', // Padding around the text
-    borderRadius: '8px', // Rounded corners
-    marginBottom: '20px', // Spacing below
-    textAlign: 'center', // Centered text
-    color: '#fff', // White text color
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow
+    backgroundColor: '#2D3748',
+    padding: '15px 20px',
+    borderRadius: '8px',
+    marginBottom: '20px',
+    textAlign: 'center',
+    color: '#fff',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
   },
   dateTimeHeading: {
-    fontSize: '1.5rem', // Slightly larger heading
-    margin: '0 0 5px', // Margin below the heading
+    fontSize: '1.5rem',
+    margin: '0 0 5px',
     fontWeight: 'bold',
   },
   dateTimeText: {
-    fontSize: '1.2rem', // Standard font size
-    margin: 0, // No margin
+    fontSize: '1.2rem',
+    margin: 0,
   },
 };
 

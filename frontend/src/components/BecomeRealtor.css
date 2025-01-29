@@ -37,12 +37,14 @@
   }
   
   .realtor-form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 equal columns */
     gap: 15px;
   }
   
   .form-group {
+    display: flex;
+    flex-direction: column;
     text-align: left;
   }
   
@@ -51,6 +53,10 @@
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
+  }
+
+  .full-width {
+    grid-column: span 2;
   }
   
   input,
