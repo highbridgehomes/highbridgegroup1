@@ -31,6 +31,8 @@ import AddInventory from "./components/AddInventory"; // New import for AddInven
 import EnergyInventoryList from './components/EnergyInventoryList';
 import CreateStaffReport from "./components/CreateStaffReport"; // Import CreateStaffReport component
 import StaffReportList from "./components/StaffReportList"; // Import StaffReportList componen
+// Import RealtorList component
+import RealtorList from "./components/RealtorList"; 
 
 
 const App = () => {
@@ -73,6 +75,10 @@ const App = () => {
         {/* Staff Report Management Routes */}
         <Route path="/create-staff-report" element={<CreateStaffReport />} /> {/* Route for creating staff reports */}
         <Route path="/staff-reports" element={<StaffReportList />} /> {/* Route for viewing all staff reports */}
+
+
+        {/* New Realtor List Route */}
+        <Route path="/realtors" element={<RealtorList />} />
 
       </Routes>
     </Router>

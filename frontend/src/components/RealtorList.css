@@ -1,0 +1,239 @@
+.realtor-list-container {
+    margin: 0 auto;
+    padding: 20px;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    background-color: #005a24;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: padding 0.3s ease;
+}
+
+
+
+
+
+
+
+
+.realtor-table-wrapper {
+    position: relative;
+    margin-top: 50px; /* Adjust based on layout */
+  }
+  
+  .realtor-table-wrapper h3 {
+    position: sticky;
+    top: 0;
+    background-color: rgba(19, 97, 7, 0.356); /* Match the background */
+    z-index: 10;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+  }
+
+.realtor-list-container img {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+    max-height: 80px;
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.realtor-table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 8px;
+    background-color: #006400;
+    margin-bottom: 20px;
+}
+
+.realtor-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #006400;
+}
+
+.realtor-table th,
+.realtor-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    color: #ffffff;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.realtor-table th {
+    background-color: #5c6bc0;
+    color: white;
+    font-size: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.realtor-table tr:nth-child(even) {
+    background-color: #004d00;
+}
+
+.realtor-table tr:hover {
+    background-color: #003d00;
+}
+
+.realtor-table td {
+    font-size: 14px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.pagination button {
+    background-color: #005a24;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.pagination button:hover {
+    background-color: #004d00;
+}
+
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+/* Popup Container */
+.popup-container {
+    background: rgb(4, 43, 9);
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.popup-container h3 {
+    color: white;
+}
+
+.popup-container p,
+.popup-container button {
+    color: white;
+}
+
+.popup-container button {
+    background: rgb(6, 88, 50);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+    text-align: center;
+}
+
+.popup-container button:hover {
+    background-color: darkgreen;
+}
+
+.view-btn {
+    background: rgb(21, 255, 0);
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.view-btn:hover {
+    background: darkblue;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .realtor-list-container {
+        padding: 18px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .realtor-table-wrapper {
+        max-height: 300px;
+    }
+
+    .realtor-table th,
+    .realtor-table td {
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .pagination button {
+        padding: 5px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .realtor-list-container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .realtor-table-wrapper {
+        max-height: 250px;
+    }
+
+    .realtor-table th,
+    .realtor-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Error Styling */
+.error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}

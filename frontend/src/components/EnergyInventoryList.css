@@ -1,123 +1,124 @@
+/* Container styling */
 .energy-inventory-list {
+    margin: 0 auto;
     padding: 20px;
+    background-size: cover;
     font-family: Arial, sans-serif;
-    background-color: #013220; /* Deep green color */
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .inventory-table {
+    background-color: #005a24; /* Green background */
+    color: #ffffff; /* White text for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Logo Styling */
+.energy-inventory-list .logo {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+    max-height: 80px;
+}
+
+/* Table Wrapper */
+.inventory-table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 8px;
+    background-color: #006400;
+}
+
+/* Table Styling */
+.inventory-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    border: 1px solid #ddd;
-  }
-  
-  .inventory-table th,
-  .inventory-table td {
+    background-color: #006400;
+}
+
+.inventory-table th,
+.inventory-table td {
     padding: 12px;
-    text-align: center;
+    text-align: left;
     border: 1px solid #ddd;
-    color: #fff; /* White text */
-  }
-  
-  .inventory-table th {
-    
-    font-weight: bold;
-  }
-  
-  .inventory-table input {
-    width: 100%;
-    padding: 5px;
-    margin: 2px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    padding: 8px 12px;
-    background-color: #007BFF;
-    border: none;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.inventory-table th {
+    background-color: #5c6bc0;
     color: white;
-    border-radius: 4px;
+    font-size: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.inventory-table tr:nth-child(even) {
+    background-color: #004d00;
+}
+
+.inventory-table tr:hover {
+    background-color: #003d00;
+}
+
+.inventory-table td {
+    font-size: 14px;
+}
+
+/* Buttons */
+.action-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    margin: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:disabled {
-    background-color: #c7c7c7;
-    cursor: not-allowed;
-  }
-  
-  @media screen and (max-width: 1024px) {
-    .inventory-table {
-      font-size: 14px;
-    }
-  
-    .inventory-table th,
-    .inventory-table td {
-      padding: 8px;
-    }
-  
-    button {
-      padding: 6px 10px;
-      font-size: 14px;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
+    color: white;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background: rgb(21, 255, 0);
+}
+
+.delete-btn {
+    background: rgb(200, 0, 0);
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
     .energy-inventory-list {
-      padding: 10px;
+        padding: 18px;
     }
-  
-    .inventory-table {
-      font-size: 12px;
+    
+    .inventory-table-wrapper {
+        max-height: 300px;
     }
-  
+    
     .inventory-table th,
     .inventory-table td {
-      padding: 6px;
+        padding: 10px;
+        font-size: 15px;
     }
-  
-    button {
-      padding: 5px 8px;
-      font-size: 12px;
+}
+
+@media (max-width: 480px) {
+    .energy-inventory-list {
+        padding: 15px;
     }
-  
-    h2 {
-      font-size: 1.5rem;
+    
+    .inventory-table-wrapper {
+        max-height: 250px;
     }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .inventory-table input {
-      padding: 4px;
-    }
-  
-    button {
-      padding: 4px 6px;
-      font-size: 10px;
-    }
-  
-    .inventory-table {
-      font-size: 10px;
-    }
-  
+    
     .inventory-table th,
     .inventory-table td {
-      padding: 5px;
+        padding: 8px;
+        font-size: 14px;
     }
-  
-    h2 {
-      font-size: 1.25rem;
-    }
-  }
+}
