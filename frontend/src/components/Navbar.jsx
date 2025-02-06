@@ -31,6 +31,7 @@ const Navbar = () => {
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
           <li><a href="/">Home</a></li>
           <li><a href="/about">About Us</a></li>
+          <li><a href="/agrovest">Agrovest</a></li>
           <li><a href="/services">Services</a></li>
           <li><a href="/properties">Properties</a></li>
           <li><a href="/events">Events</a></li> {/* New Event Link */}

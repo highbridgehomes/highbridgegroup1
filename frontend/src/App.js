@@ -33,6 +33,10 @@ import CreateStaffReport from "./components/CreateStaffReport"; // Import Create
 import StaffReportList from "./components/StaffReportList"; // Import StaffReportList componen
 // Import RealtorList component
 import RealtorList from "./components/RealtorList"; 
+import DigitalMarketingTable from './components/DigitalMarketingTable'; // Import DigitalMarketingTable
+import AgrovestLandingPage from "./pages/AgrovestLandingPage"; // Import AgrovestLandingPage
+import PaymentPage from './components/PaymentPage';
+
 
 
 const App = () => {
@@ -42,6 +46,7 @@ const App = () => {
       <ScrollToTop /> {/* Add the ScrollToTop component here */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/agrovest" element={<AgrovestLandingPage />} /> {/* New route for AgrovestLandingPage */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<ServicesPage />} />
@@ -79,6 +84,9 @@ const App = () => {
 
         {/* New Realtor List Route */}
         <Route path="/realtors" element={<RealtorList />} />
+         {/* Digital Marketing Registrations Route */}
+         <Route path="/digital-marketing-registrations" element={<DigitalMarketingTable />} /> {/* New route for viewing all digital marketing registrations */}
+         <Route path="/payment" element={<PaymentPage />} />
 
       </Routes>
     </Router>
