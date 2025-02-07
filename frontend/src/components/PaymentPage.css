@@ -71,4 +71,111 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
+
+
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    text-align: left; /* Align text to the left */
+    width: 50%; /* Limit content width */
+  }
+  
+  @media (max-width: 768px) {
+    .hero-content {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center; /* Center content on smaller screens */
+      width: 80%;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .payment-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(9, 65, 1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 400px;
+    max-width: 90%;
+  }
+  
+  .payment-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  
+  .transparent-btn {
+    cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   

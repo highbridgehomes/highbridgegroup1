@@ -21,10 +21,7 @@ const FAQ = () => {
               key={index}
               className={`faq-item ${activeIndex === index ? "active" : ""}`}
             >
-              <div
-                className="faq-question"
-                onClick={() => toggleFAQ(index)}
-              >
+              <div className="faq-question" onClick={() => toggleFAQ(index)}>
                 <span>{faq.question}</span>
                 <button className="toggle-btn">
                   {activeIndex === index ? "-" : "+"}
@@ -32,18 +29,7 @@ const FAQ = () => {
               </div>
               {activeIndex === index && (
                 <div className="faq-answer">
-                  <p>{faq.description}</p>
-                  <ul>
-                    {faq.points.map((point, i) => (
-                      <li key={i}>{point}</li>
-                    ))}
-                  </ul>
-                  <p>
-                    {faq.additionalText} <br />
-                    For more details,{" "}
-                    <a href="#!">Contact us</a> and our team will assist you
-                    promptly.
-                  </p>
+                  <p>{faq.answer}</p>
                 </div>
               )}
             </div>
@@ -54,66 +40,28 @@ const FAQ = () => {
   );
 };
 
-// FAQ data for a real estate business
 const faqData = [
-  {
-    question: "What is the process for buying a property?",
-    description:
-      "Buying a property involves several steps, including understanding your budget, finding the right property, and completing the paperwork.",
-    points: [
-      "Determine your budget and financing options.",
-      "Search for properties that meet your needs.",
-      "Schedule property viewings and inspections.",
-      "Finalize the purchase agreement and close the deal.",
-    ],
-    additionalText: "Our team will guide you through each step to ensure a smooth process.",
-  },
-  {
-    question: "What services do you offer for property sellers?",
-    description:
-      "We provide comprehensive services for property sellers to maximize their property's value and ensure a quick sale.",
-    points: [
-      "Property evaluation and pricing.",
-      "Professional photography and listing services.",
-      "Marketing across various platforms.",
-      "Negotiation and closing support.",
-    ],
-    additionalText: "We aim to help you sell your property at the best possible price.",
-  },
-  {
-    question: "How do I know if I qualify for a mortgage?",
-    description:
-      "Mortgage qualification depends on factors such as your income, credit score, and existing debt obligations.",
-    points: [
-      "Check your credit score and financial history.",
-      "Understand the debt-to-income ratio requirements.",
-      "Get pre-approved by a lender for better clarity.",
-    ],
-    additionalText: "We can connect you with trusted mortgage advisors to simplify this process.",
-  },
-  {
-    question: "What should I look for during a property inspection?",
-    description:
-      "A property inspection is crucial for identifying potential issues and understanding the condition of the property.",
-    points: [
-      "Check the structural integrity of the building.",
-      "Inspect plumbing, electrical systems, and HVAC units.",
-      "Look for signs of water damage or pest infestation.",
-    ],
-    additionalText: "A professional inspector can provide a detailed report for your peace of mind.",
-  },
-  {
-    question: "Do you offer property management services?",
-    description:
-      "Yes, we offer property management services to help landlords manage their investments efficiently.",
-    points: [
-      "Tenant screening and leasing.",
-      "Rent collection and accounting.",
-      "Maintenance and repair coordination.",
-      "Regular property inspections.",
-    ],
-    additionalText: "Let us handle the day-to-day tasks while you enjoy passive income.",
-  },
+  { question: "What is AGROVEST?", answer: "AGROVEST is an agricultural investment offering individuals and organizations the opportunity to invest in sustainable agricultural projects in Nigeria. It is a partnership between Highbridge FLIPVEST Ltd and the Ministry of Agriculture." },
+  { question: "What is FLIPVEST Ltd?", answer: "FLIPVEST LTD is a subsidiary of HIGHBRIDGE GROUP, while AGROVEST represents its agricultural investment product." },
+  { question: "Which estate is involved in AGROVEST?", answer: "Farmcity Cooperatives Estate, Ishiwo." },
+  { 
+    question: "What are the investment options and their respective ROIs?", 
+    answer: `We offer:
+      - 6-Month Plan: Minimum N500,000 with 25% ROI.
+      - 9-Month Plan: Minimum N500,000 with 30% ROI.
+      - 12-Month Plan: Minimum N500,000 with 50% ROI.
+      - 18-Month Plan: Minimum N500,000 with an ROI of 75%.`  
+  },  // <-- Comma added here
+  { question: "What is the maximum amount required to invest?", answer: "The maximum for the 6-month plan is N10,000,000, while there is no maximum for 9, 12, and 18-month plans." },
+  { question: "What do I get after payment?", answer: "Once payment is confirmed, you will receive a Payment Receipt, Deed of Contract, and a Post-dated Cheque." },
+  { question: "How will the returns be paid out?", answer: "Returns are paid at the end of the investment period via bank transfer or cheque issuance." },
+  { question: "What types of agriculture projects are involved?", answer: "Projects include crop farming (vegetables, fruits, grains), livestock farming, aquaculture, and agro-processing, managed in collaboration with the Ministry of Agriculture." },
+  { question: "How is my investment secured?", answer: "Investments are secured through experienced project management, government collaboration, and a strong risk management framework." },
+  { question: "Can I withdraw my investment before the end of the term?", answer: "Early withdrawal is generally not permitted, but exceptional cases may be reviewed by the investment management team." },
+  { question: "Are there any additional fees or charges?", answer: "No hidden fees. The ROI quoted is the net return on your investment." },
+  { question: "What happens if the project does not meet the projected ROI?", answer: "AGROVEST, in collaboration with the Ministry of Agriculture, will work with investors to find a satisfactory resolution in case of unforeseen challenges." },
+  { question: "How do I get started with the investment plan?", answer: "Contact Highbridge FLIPVEST Ltd or visit our Lagos office. Our team will assist you in selecting and completing your investment plan." },
+  { question: "Is this investment plan available to individuals outside of Nigeria?", answer: "Yes, both local and international investors can participate in this agricultural investment opportunity in Lagos, Nigeria." },
 ];
 
 export default FAQ;

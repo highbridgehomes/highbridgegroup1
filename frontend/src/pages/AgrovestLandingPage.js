@@ -8,6 +8,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import FAQ from "../components/FAQ";
+import { motion } from "framer-motion";
 
 const images = [
   "/assets/images/hero/landhero2.png",
@@ -25,10 +27,9 @@ const investmentPlans = [
 const AgrovestLandingPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState(investmentPlans[0].value);
-  const [investmentAmount, setInvestmentAmount] = useState(500000);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({ email: "", phone: "", name: "" });
+  const [submissionSuccess, setSubmissionSuccess] = useState(null);
 
   // Create refs for each section
   const aboutRef = useRef(null);
@@ -63,35 +64,24 @@ const AgrovestLandingPage = () => {
     setIsMobileNavOpen((prev) => !prev);
   };
 
-  const handlePlanChange = (e) => {
-    const selected = investmentPlans.find((plan) => plan.value === e.target.value);
-    if (selected) {
-      setSelectedPlan(selected.value);
-      setInvestmentAmount(selected.minAmount);
-    }
+
+
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleFlutterwavePayment = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/payments/initiate-flutterwave-payment", {
-        amount: investmentAmount,
-        email: user.email,
-        name: user.name,
-        phone: user.phone,
-        plan: selectedPlan,
-      });
-
-      if (response.data.message === "Payment link generated successfully") {
-        window.location.href = response.data.paymentLink;
-      } else {
-        console.error("Flutterwave payment initiation failed");
-      }
+      const response = await axios.post("http://localhost:5000/api/agrovest/register", user);
+      setSubmissionSuccess(response.data.message);
+      setUser({ email: "", phone: "", name: "" });
     } catch (error) {
-      console.error("Error initiating Flutterwave payment:", error);
-    } finally {
-      setLoading(false);
+      setSubmissionSuccess("Registration failed. Please try again.");
     }
+    setLoading(false);
   };
 
 
@@ -110,7 +100,7 @@ const AgrovestLandingPage = () => {
     color: "#fff",
   }}
 >
-  💰 Grow Your Wealth with Highbridge Agrovest! 🌾📈
+  💰 Secure Your Future: Profitable Agricultural Investments in Nigeria! 🌾📈
 </h1>
           <p></p>
 
@@ -126,7 +116,7 @@ const AgrovestLandingPage = () => {
     Gallery
   </button>
   <Link to="/payment" className="transparent-btn1">
-    paynow
+    Payment Gateway
   </Link>
 </div>
 
@@ -180,10 +170,7 @@ const AgrovestLandingPage = () => {
 
 </div>
 
-
-
-
-            <div className="about-video">
+        <div className="about-video">
               <iframe
                 width="100%"
                 height="315"
@@ -220,10 +207,10 @@ const AgrovestLandingPage = () => {
         className="gallery-carousel"
       >
         <SwiperSlide>
-        <img src="/assets/images/hero/heroimage1.jpg" alt="Gallery 1" />
+        <img src="/assets/images/hero/agrovestimage.jpg" alt="Gallery 1" />
         </SwiperSlide>
         <SwiperSlide>
-        <img src="/assets/images/hero/heroimage3.jpg" alt="Gallery 2" />
+        <img src="/assets/images/hero/agrovestimage2.jpg" alt="Gallery 2" />
         </SwiperSlide>
         <SwiperSlide>
         <img src="/assets/images/hero/heroimage4.jpg" alt="Gallery 2" />
@@ -254,7 +241,7 @@ const AgrovestLandingPage = () => {
           <iframe
             width="100%"
             height="315"
-            src="https://www.youtube.com/embed/P7gy4wKFRLA"
+            src="https://www.youtube.com/embed/A4PgGtixNaA"
             title="Video 2"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -277,92 +264,32 @@ const AgrovestLandingPage = () => {
 
 
      {/* Registration Section */}
-<section
-  ref={registrationRef}
-  className="registration"
-  style={{ backgroundColor: 'green', padding: '20px' }}
->
-  <h2>Register Now</h2>
-  <form className="registration-form">
-    <input type="text" placeholder="Full Name" required />
-    <input type="email" placeholder="Email Address" required />
-    <input type="tel" placeholder="Phone Number" required />
-    <button type="submit">Submit</button>
-  </form>
-</section>
+     <section ref={registrationRef} className="registration" style={{ backgroundColor: "green", padding: "20px" }}>
+        <h2>Register Now</h2>
+        <form className="registration-form" onSubmit={handleSubmit}>
+          <input type="text" name="name" placeholder="Full Name" value={user.name} onChange={handleChange} required />
+          <input type="email" name="email" placeholder="Email Address" value={user.email} onChange={handleChange} required />
+          <input type="tel" name="phone" placeholder="Phone Number" value={user.phone} onChange={handleChange} required />
+          <button type="submit" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </button>
+        </form>
+        {submissionSuccess && <p>{submissionSuccess}</p>}
+      </section>
 
       {/* Payment Section */}
-      <section ref={paynowRef} className="payment-section">
-  <h2>Proceed to Payment</h2>
-  <div className="payment-container">
-    {/* Investment Plan Label */}
-    <label>Select Investment Plan:</label>
-    <select value={selectedPlan} onChange={handlePlanChange}>
-      {investmentPlans.map((plan) => (
-        <option key={plan.value} value={plan.value}>
-          {plan.label}
-        </option>
-      ))}
-    </select>
-    
-    {/* Investment Amount Label and Input */}
-    <label>Enter Investment Amount (Min ₦500,000, Max ₦1,000,000,000):</label>
-    <input 
-      type="number" 
-      value={investmentAmount} 
-      min={500000} 
-      max={1000000000} 
-      onChange={(e) => setInvestmentAmount(Number(e.target.value))} 
-      placeholder="Enter amount" 
-    />
-    
-    {/* Validation message for Investment Amount */}
-    {investmentAmount < 500000 && investmentAmount > 0 && (
-      <div className="error-message">Minimum investment amount is ₦500,000</div>
-    )}
-    {investmentAmount > 1000000000 && (
-      <div className="error-message">Maximum investment amount is ₦1,000,000,000</div>
-    )}
-
-    {/* Form validation for user details */}
-    <label>Full Name:</label>
-    <input
-      type="text"
-      value={user.name}
-      onChange={(e) => setUser({ ...user, name: e.target.value })}
-      placeholder="Enter your full name"
-      required
-    />
-
-    <label>Email Address:</label>
-    <input
-      type="email"
-      value={user.email}
-      onChange={(e) => setUser({ ...user, email: e.target.value })}
-      placeholder="Enter your email"
-      required
-    />
-
-    <label>Phone Number:</label>
-    <input
-      type="tel"
-      value={user.phone}
-      onChange={(e) => setUser({ ...user, phone: e.target.value })}
-      placeholder="Enter your phone number"
-      required
-    />
-
-    {/* Pay Now Button with validation */}
-    <button 
-      onClick={handleFlutterwavePayment} 
-      disabled={investmentAmount < 500000 || investmentAmount > 1000000000 || loading || !user.name || !user.email || !user.phone}
-      className={investmentAmount < 500000 || investmentAmount > 1000000000 || loading || !user.name || !user.email || !user.phone ? "disabled-btn" : ""}
-    >
-      {loading ? "Processing..." : "Pay Now"}
-    </button>
+  {/* Payment Section Banner */}
+  <div className="payment-banner">
+  <div className="payment-banner-overlay">
+    <h2>Secure Your Investment Now!</h2>
+    <p>Join thousands of investors making profitable returns in agriculture.</p>
+    <Link to="/payment">
+      <button className="payment-banner-btn">Get Started</button>
+    </Link>
   </div>
-</section>
-
+</div>
+ {/* FAQ Section */}
+ <FAQ />
       {/* Replace the old footer with the imported Footer component */}
       <Footer />
     </div>
