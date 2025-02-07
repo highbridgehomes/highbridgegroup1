@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import FAQ from "../components/FAQ";
+import SponsorSlider from "../components/SponsorSlider";
 import { motion } from "framer-motion";
 
 const images = [
@@ -143,6 +144,8 @@ const AgrovestLandingPage = () => {
         <button onClick={() => { scrollToGallery(); toggleMobileNav(); }}>Gallery</button>
         <Link to="/payment" onClick={toggleMobileNav}>paynow</Link>
       </div>
+
+      <SponsorSlider />
 
       {/* About Section */}
       <section ref={aboutRef} className="about">
