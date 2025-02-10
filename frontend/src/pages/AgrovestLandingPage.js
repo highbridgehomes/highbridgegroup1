@@ -91,7 +91,7 @@ const AgrovestLandingPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/register", user);
+      const response = await axios.post("https://highbridge-api-3.onrender.com/api/auth/register", user);
       setSubmissionSuccess(response.data.message);
       setUser({ email: "", phone: "", name: "", password: "" }); // Reset fields
       
@@ -390,7 +390,7 @@ const AgrovestLandingPage = () => {
        {/* Chatbot Section */}
        <div className={`chatbot-container ${isChatOpen ? "active" : ""}`}>
          <iframe
-           src="https://www.chatbase.co/chatbot-iframe/FB8SoblgMLKD2t3s79q3P"
+           src="https://www.chatbase.co/chatbot-iframe/wOczlmU3QE474j24ndAVh"
            width="100%"
            style={{ height: "100%", minHeight: "700px", border: "none" }}
            frameBorder="0"

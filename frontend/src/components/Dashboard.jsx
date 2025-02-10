@@ -54,7 +54,7 @@ const Dashboard = () => {
   const handlePayment = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/payments/initiate-flutterwave-payment",
+        "https://highbridge-api-3.onrender.com/api/payments/initiate-flutterwave-payment",
         { amount: investmentAmount, plan: selectedPlan },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
