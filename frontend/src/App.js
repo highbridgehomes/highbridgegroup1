@@ -35,7 +35,7 @@ import StaffReportList from "./components/StaffReportList"; // Import StaffRepor
 import RealtorList from "./components/RealtorList"; 
 import DigitalMarketingTable from './components/DigitalMarketingTable'; // Import DigitalMarketingTable
 import AgrovestLandingPage from "./pages/AgrovestLandingPage"; // Import AgrovestLandingPage
-import PaymentPage from './components/PaymentPage';
+import DashboardPage from './components/Dashboard';
 
 
 
@@ -86,7 +86,7 @@ const App = () => {
         <Route path="/realtors" element={<RealtorList />} />
          {/* Digital Marketing Registrations Route */}
          <Route path="/digital-marketing-registrations" element={<DigitalMarketingTable />} /> {/* New route for viewing all digital marketing registrations */}
-         <Route path="/payment" element={<PaymentPage />} />
+         <Route path="/dashboard/:userId" element={<DashboardPage />} />
 
       </Routes>
     </Router>

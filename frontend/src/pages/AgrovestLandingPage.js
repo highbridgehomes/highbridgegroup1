@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AgrovestLandingPage.css"; // Ensure this CSS file exists
 import Footer from "../components/Footer";
@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import FAQ from "../components/FAQ";
 import SponsorSlider from "../components/SponsorSlider";
+import { FaCommentDots } from "react-icons/fa"; // Import an icon from react-icons
 import { motion } from "framer-motion";
 
 const images = [
@@ -27,10 +28,18 @@ const investmentPlans = [
 
 const AgrovestLandingPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const navigate = useNavigate(); // Add this line
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({ email: "", phone: "", name: "" });
+  const [user, setUser] = useState({ email: "", phone: "", name: "", password: "" });
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [submissionSuccess, setSubmissionSuccess] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(true);
+  const [isChatOpen, setIsChatOpen] = useState(false); // Chatbot state
+
+  //const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  //const [showLoginForm, setShowLoginForm] = useState(false);
 
   // Create refs for each section
   const aboutRef = useRef(null);
@@ -65,22 +74,54 @@ const AgrovestLandingPage = () => {
     setIsMobileNavOpen((prev) => !prev);
   };
 
-
+  const toggleModal = () => setShowModal(!showModal);
+  const switchForm = () => setIsRegistering(!isRegistering);
 
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+  
+  // Handle Login Input Change
+  const handleLoginChange = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/agrovest/register", user);
+      const response = await axios.post("http://localhost:5000/api/auth/register", user);
       setSubmissionSuccess(response.data.message);
-      setUser({ email: "", phone: "", name: "" });
+      setUser({ email: "", phone: "", name: "", password: "" }); // Reset fields
+      
+      // Switch to login form
+      setIsRegistering(false);
     } catch (error) {
       setSubmissionSuccess("Registration failed. Please try again.");
+    }
+    setLoading(false);
+  };
+
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/login", loginData);
+      console.log("Login response:", response.data); // Debugging
+  
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
+        navigate(`/dashboard/${response.data.user.id}`); // Use correct ID from API response
+      } else {
+        console.log("No token received, possible error:", response.data);
+        setSubmissionSuccess("Login failed. Invalid credentials.");
+      }
+    } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
+      setSubmissionSuccess("Login failed. Please check your credentials.");
     }
     setLoading(false);
   };
@@ -122,10 +163,9 @@ const AgrovestLandingPage = () => {
 </div>
 
           {/* Transparent registration button centered */}
+          {/* Register Button */}
           <div className="center-button-container">
-            <button className="transparent-btn" onClick={scrollToRegistration}>
-              Register Now
-            </button>
+            <button className="transparent-btn" onClick={toggleModal}>Register Now</button>
           </div>
         </div>
       </div>
@@ -266,19 +306,66 @@ const AgrovestLandingPage = () => {
     </section>
 
 
-     {/* Registration Section */}
-     <section ref={registrationRef} className="registration" style={{ backgroundColor: "green", padding: "20px" }}>
-        <h2>Register Now</h2>
-        <form className="registration-form" onSubmit={handleSubmit}>
-          <input type="text" name="name" placeholder="Full Name" value={user.name} onChange={handleChange} required />
-          <input type="email" name="email" placeholder="Email Address" value={user.email} onChange={handleChange} required />
-          <input type="tel" name="phone" placeholder="Phone Number" value={user.phone} onChange={handleChange} required />
-          <button type="submit" disabled={loading}>
-            {loading ? "Registering..." : "Register"}
-          </button>
-        </form>
-        {submissionSuccess && <p>{submissionSuccess}</p>}
-      </section>
+    {/* Modal for Registration/Login */}
+    {showModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+          <button 
+  style={{
+    position: "absolute",
+    top: "10px",
+    right: "15px",
+    fontSize: "20px",
+    border: "none",
+    background: "green", 
+    color: "white",
+    padding: "5px 10px",
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "background 0.3s ease"
+  }} 
+  onClick={toggleModal}
+>
+  ×
+</button>
+            {isRegistering ? (
+              <form onSubmit={handleSubmit} className="form-container">
+                <h2 style={{ 
+  textAlign: "center", 
+  color: "black", 
+  fontSize: "24px", 
+  fontWeight: "bold", 
+  marginBottom: "20px" 
+}}>
+  Register
+</h2>
+                <input type="text" name="name" placeholder="Full Name" value={user.name} onChange={handleChange} required />
+                <input type="email" name="email" placeholder="Email" value={user.email} onChange={handleChange} required />
+                <input type="tel" name="phone" placeholder="Phone Number" value={user.phone} onChange={handleChange} required />
+                <input type="password" name="password"placeholder="Enter your password"value={user.password} onChange={handleChange} required/>
+                <button type="submit" disabled={loading}>{loading ? "Processing..." : "Register"}</button>
+                <p>Already have an account? <span onClick={switchForm} className="toggle-link">Login</span></p>
+              </form>
+            ) : (
+              <form onSubmit={handleLoginSubmit} className="form-container">
+                <h2 style={{ 
+  textAlign: "center", 
+  color: "black", 
+  fontSize: "24px", 
+  fontWeight: "bold", 
+  marginBottom: "20px" 
+}}>
+  Login
+</h2>
+                <input type="email" name="email" placeholder="Email" value={loginData.email} onChange={handleLoginChange} required />
+                <input type="password" name="password" placeholder="Password" value={loginData.password} onChange={handleLoginChange} required />
+                <button type="submit" disabled={loading}>{loading ? "Processing..." : "Login"}</button>
+                <p>Don't have an account? <span onClick={switchForm} className="toggle-link">Register</span></p>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Payment Section */}
   {/* Payment Section Banner */}
@@ -288,11 +375,27 @@ const AgrovestLandingPage = () => {
     <p>Join thousands of investors making profitable returns in agriculture.</p>
     <Link to="/payment">
       <button className="payment-banner-btn">Get Started</button>
-    </Link>
+    </Link>.
+
   </div>
 </div>
  {/* FAQ Section */}
  <FAQ />
+
+ {/* Chatbot Toggle Button */}
+       <button className="chatbot-toggle" onClick={() => setIsChatOpen(!isChatOpen)}>
+         <FaCommentDots />
+       </button>
+ 
+       {/* Chatbot Section */}
+       <div className={`chatbot-container ${isChatOpen ? "active" : ""}`}>
+         <iframe
+           src="https://www.chatbase.co/chatbot-iframe/FB8SoblgMLKD2t3s79q3P"
+           width="100%"
+           style={{ height: "100%", minHeight: "700px", border: "none" }}
+           frameBorder="0"
+         ></iframe>
+       </div>
       {/* Replace the old footer with the imported Footer component */}
       <Footer />
     </div>

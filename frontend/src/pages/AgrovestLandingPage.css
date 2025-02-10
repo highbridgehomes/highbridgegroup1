@@ -497,3 +497,164 @@ html {
     padding: 10px 20px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal {
+  position: fixed;
+  top: 50%;
+  background: green; /* Green background */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(9, 65, 1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 400px;
+  max-width: 90%;
+}
+
+/* Form Styles */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container h2 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Input Fields */
+.form-container input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-container input:focus {
+  box-shadow: 0 0 5px white;
+}
+
+
+.close-btn {
+  background: green;
+  border: none;
+  font-size: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.transparent-btn {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Chatbot Styling */
+
+/* Chatbot Styling */
+.chatbot-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 400px;
+  height: 600px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: none; /* Hidden by default */
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Show chatbot when active */
+.chatbot-container.active {
+  display: block; /* Show when active */
+}
+
+/* Chatbot Toggle Button */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #005a24;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  transition: background 0.3s ease;
+}
+
+.chatbot-toggle:hover {
+  background: #004d1a;
+}
+
+/* Responsive Chatbot */
+@media (max-width: 600px) {
+  .chatbot-container {
+      width: 90%;
+      height: 450px;
+      right: 5%;
+  }
+
+  .chatbot-toggle {
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+  }
+}
