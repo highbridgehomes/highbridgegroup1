@@ -1,26 +1,43 @@
 /* Dashboard Container */
+:root {
+    --primary-color: #007bff;
+    --hover-color: #0056b3;
+    --text-dark: #333;
+    --text-light: #555;
+    --bg-light: #f8f9fa;
+    --card-bg: #fff;
+    --border-color: #ddd;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  
 .dashboard-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    background: #f8f9fa; /* Light background */
+    background: green; /* Green Background */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full Page Height */
   }
   
   /* User Info Section */
-  .dashboard-header {
-    text-align: center;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
+.dashboard-header {
+  width: 100%;
+  max-width: 800px;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
   
-  .dashboard-header h1 {
-    color: #333;
-    font-size: 24px;
-  }
+.dashboard-header h1 {
+  color: var(--text-dark);
+  font-size: 26px;
+  margin-bottom: 20px;
+}
   
   .dashboard-header p {
     color: #555;
@@ -98,9 +115,30 @@
   .investment-form button:hover:not(:disabled) {
     background: #0056b3;
   }
+
+  /* Grid Layout for User Info */
+.user-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 15px;
+  text-align: left;
+}
+
+  .user-info-grid p {
+    background: #f0f0f0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 500;
+}
+
   
   /* Responsive Design */
   @media (max-width: 768px) {
+    .user-info-grid {
+      grid-template-columns: 1fr; /* Single column on mobile */
+  }
     .dashboard-container {
       padding: 15px;
     }
