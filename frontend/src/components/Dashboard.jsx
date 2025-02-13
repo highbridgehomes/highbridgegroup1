@@ -39,10 +39,12 @@ const Dashboard = () => {
         setUser(response.data);
 
         // ✅ Process Data for Chart
-        const formattedData = response.data.investments.map((investment) => ({
-          name: investment.plan,
-          amount: investment.amount,
-        }));
+        const formattedData = response.data.investments
+  ? response.data.investments.map((investment) => ({
+      name: investment.plan,
+      amount: investment.amount,
+    }))
+  : [];
         setInvestmentData(formattedData);
       } catch (error) {
         setErrorMessage("⚠️ Failed to load dashboard. Please try again.");
