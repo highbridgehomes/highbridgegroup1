@@ -12,7 +12,7 @@
 
   
 .dashboard-container {
-    max-width: 1400px;
+  max-width: 100%; /* Ensure full width */
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -21,6 +21,15 @@
     align-items: center;
     min-height: 100vh; /* Full Page Height */
   }
+
+  .chart-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Make sure it's above other elements */
+}
   
   /* User Info Section */
 .dashboard-header {

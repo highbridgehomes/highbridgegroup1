@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer"; // ✅ Import Footer
 import "./Dashboard.css"; // ✅ Import Styles
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts"; // ✅ Import Recharts
 
 const investmentPlans = [
   { label: "25% ROI in 6 Months", value: "6m", minAmount: 500000 },
@@ -20,6 +21,7 @@ const Dashboard = () => {
   const [paymentLink, setPaymentLink] = useState("");
   const [processing, setProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [investmentData, setInvestmentData] = useState([]); // ✅ State for Chart Data
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -35,9 +37,15 @@ const Dashboard = () => {
         });
 
         setUser(response.data);
+
+        // ✅ Process Data for Chart
+        const formattedData = response.data.investments.map((investment) => ({
+          name: investment.plan,
+          amount: investment.amount,
+        }));
+        setInvestmentData(formattedData);
       } catch (error) {
-        console.error("Error fetching dashboard:", error);
-        setErrorMessage("Failed to load dashboard. Please try again.");
+        setErrorMessage("⚠️ Failed to load dashboard. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -45,6 +53,10 @@ const Dashboard = () => {
 
     fetchDashboardData();
   }, [navigate]);
+
+
+
+  
 
   const handlePlanChange = (e) => {
     const selected = investmentPlans.find(plan => plan.value === e.target.value);
@@ -58,102 +70,70 @@ const Dashboard = () => {
 
 
 
-  
+
 
   const handlePayment = async () => {
-    try {
-        console.log("🚀 handlePayment function triggered");
-        console.log("🛒 Selected Plan:", selectedPlan);
-        console.log("💰 Investment Amount:", investmentAmount);
+    console.log("👤 User Data: ", user);
+    console.log("📌 Selected Plan: ", selectedPlan);
+    console.log("💰 Investment Amount: ", investmentAmount);
 
-        // ✅ Validate Required Fields
+    try {
         if (!selectedPlan) {
-            setErrorMessage("Please select an investment plan.");
+            setErrorMessage("⚠️ Please select an investment plan.");
             return;
         }
         if (investmentAmount < 500000) {
-            setErrorMessage("Minimum investment is ₦500,000.");
-            return;
-        }
-        if (!user?.name || !user?.email || !user?.phone) {
-            setErrorMessage("User details missing. Please update your profile.");
+            setErrorMessage("⚠️ Minimum investment is ₦500,000.");
             return;
         }
 
-        // ✅ Log User Details Before Proceeding
-        console.log("👤 User Details:", user);
-
-        // ✅ Reset error messages and show processing state
         setProcessing(true);
         setErrorMessage("");
 
         const token = localStorage.getItem("token");
 
-        // ✅ Save Investment
-        console.log("🔄 Saving investment details...");
-        const investmentData = {
-            amount: investmentAmount,
-            plan: selectedPlan,
-            status: "pending",
-            user: {
-                name: user.name,
-                email: user.email,
-                phone: user.phone,
-                kycVerified: user.kycVerified ?? false, // Add if required
-            },
-        };
+        const planDetails = investmentPlans.find(plan => plan.value === selectedPlan);
+        const expectedReturns = planDetails 
+            ? (investmentAmount * parseFloat(planDetails.label.match(/\d+/)[0]) / 100) 
+            : 0;
 
-        console.log("📤 Sending Investment Request with Data:", investmentData);
-
-        const saveInvestmentResponse = await axios.post(
-            "http://localhost:5000/api/investments/add",
-            investmentData,
-            { headers: { Authorization: `Bearer ${token}` } }
-        );
-
-        console.log("✅ Investment saved response:", saveInvestmentResponse.data);
-
-        if (saveInvestmentResponse.data.status !== "success") {
-            setErrorMessage("Investment could not be saved. Try again later.");
-            return;
-        }
-
-        // ✅ Initiate Flutterwave Payment
         const paymentData = {
             amount: investmentAmount,
             plan: selectedPlan,
-            email: user.email,
-            phone: user.phone,
+            email: user.email || "",
+            phone: user.phone || "",
             currency: "NGN",
-            fullName: user.name,
-            kycVerified: user.kycVerified ?? false, // Add if required
+            fullName: user.name || "",
+            expectedReturns,
         };
 
-        console.log("📤 Sending Payment Request with Data:", paymentData);
+        console.log("🚀 Sending Payment Data:", paymentData);
 
-        console.log("💳 Sending request to initiate Flutterwave payment...");
         const paymentResponse = await axios.post(
             "http://localhost:5000/api/payments/initiate-flutterwave-payment",
             paymentData,
             { headers: { Authorization: `Bearer ${token}` } }
         );
 
-        console.log("📡 Payment response from backend:", paymentResponse.data);
+        console.log("✅ Full API Response:", paymentResponse);
 
-        // ✅ Handle Payment Link
-        if (paymentResponse.data?.data?.link) {
-            setPaymentLink(paymentResponse.data.data.link);
+        // Ensure the response contains the expected structure
+        if (paymentResponse.data && paymentResponse.data.redirectUrl) {
+            console.log("🔗 Payment Link:", paymentResponse.data.redirectUrl);
+            setPaymentLink(paymentResponse.data.redirectUrl);
+            window.location.href = paymentResponse.data.redirectUrl;
         } else {
-            setErrorMessage("Error generating payment link. Please try again.");
+            console.error("🛑 Unexpected Response Structure:", paymentResponse.data);
+            setErrorMessage("⚠️ Error generating payment link. Please try again.");
         }
     } catch (error) {
-        console.error("❌ Payment Error:", error.response?.data || error.message);
-        console.log("🛑 Full Error Object:", error.toJSON ? error.toJSON() : error);
-        setErrorMessage(error.response?.data?.message || "Payment failed. Please try again.");
+        console.error("🛑 Payment API Error:", error.response?.data || error.message);
+        setErrorMessage(error.response?.data?.message || "⚠️ Payment failed. Please try again.");
     } finally {
         setProcessing(false);
     }
 };
+
 
 
   if (loading) return <p>Loading dashboard...</p>;
@@ -170,24 +150,44 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* ✅ Investment Chart */}
+      <h2>Investment Overview</h2>
+      <div style={{ width: "100%", height: "400px", margin: "0 auto" }}>
+        {investmentData.length ? (
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={investmentData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="amount" fill="#4CAF50" />
+            </BarChart>
+          </ResponsiveContainer>
+        ) : (
+          <p style={{ color: "white" }}>Loading chart data...</p>
+        )}
+      </div>
+
+      {/* ✅ User Investments */}
       <h2>Your Investments</h2>
       <div className="investments-container">
-  {user?.investments?.length ? (
-    user.investments.map((investment, index) => (
-      <div key={index} className="investment-card">
-        <p><strong>Plan:</strong> {investment.plan}</p>
-        <p><strong>Amount:</strong> ₦{investment.amount.toLocaleString()}</p>
-        <p><strong>Status:</strong> {investment.status}</p>
-        <p><strong>Start Date:</strong> {new Date(investment.startDate).toDateString()}</p>
-        <p><strong>Maturity Date:</strong> {new Date(investment.maturityDate).toDateString()}</p>
-        <p><strong>Expected Returns:</strong> ₦{investment.expectedReturns.toLocaleString()}</p>
+        {user?.investments?.length ? (
+          user.investments.map((investment, index) => (
+            <div key={index} className="investment-card">
+              <p><strong>Plan:</strong> {investment.plan}</p>
+              <p><strong>Amount:</strong> {new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(investment.amount)}</p>
+              <p><strong>Status:</strong> {investment.status}</p>
+              <p><strong>Start Date:</strong> {new Date(investment.startDate).toDateString()}</p>
+              <p><strong>Maturity Date:</strong> {new Date(investment.maturityDate).toDateString()}</p>
+              <p><strong>Expected Returns:</strong> {new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(investment.expectedReturns)}</p>
+            </div>
+          ))
+        ) : (
+          <p style={{ color: "white" }}>No active investments</p>
+        )}
       </div>
-    ))
-  ) : (
-    <p style={{ color: "white", fontWeight: "bold" }}>No active investments</p>
-  )}
-</div>
 
+      {/* ✅ Investment Form */}
       <h2>Invest Now</h2>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
@@ -201,24 +201,14 @@ const Dashboard = () => {
         </select>
 
         <label>Enter Investment Amount:</label>
-        <input
-          type="number"
-          value={investmentAmount}
-          min={500000}
-          max={1000000000}
-          onChange={(e) => setInvestmentAmount(Number(e.target.value))}
-        />
+        <input type="number" value={investmentAmount} min={500000} onChange={(e) => setInvestmentAmount(Number(e.target.value))} />
 
         <button onClick={handlePayment} disabled={processing || !selectedPlan || investmentAmount < 500000}>
           {processing ? "Processing..." : "Pay with Flutterwave"}
         </button>
       </div>
 
-      {paymentLink && (
-        <a href={paymentLink} target="_blank" rel="noopener noreferrer">
-          Proceed to Payment
-        </a>
-      )}
+      {paymentLink && <a href={paymentLink} target="_blank" rel="noopener noreferrer">Proceed to Payment</a>}
 
       <Footer />
     </div>
