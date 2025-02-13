@@ -28,13 +28,16 @@ const Dashboard = () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
+          console.warn("🔴 No token found, redirecting to login...");
           navigate("/login"); // Redirect if not logged in
           return;
         }
+        console.log("🟢 Fetching dashboard data...");
 
         const response = await axios.get("http://localhost:5000/api/dashboard", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log("✅ API Response:", response.data);
 
         setUser(response.data);
 
@@ -45,8 +48,11 @@ const Dashboard = () => {
       amount: investment.amount,
     }))
   : [];
+  console.log("📊 Formatted Investment Data:", formattedData);
         setInvestmentData(formattedData);
+        
       } catch (error) {
+        console.error("🛑 Error fetching dashboard data:", error.response?.data || error.message);
         setErrorMessage("⚠️ Failed to load dashboard. Please try again.");
       } finally {
         setLoading(false);
