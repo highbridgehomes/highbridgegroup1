@@ -22,6 +22,7 @@ const Dashboard = () => {
   const [processing, setProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [investmentData, setInvestmentData] = useState([]); // ✅ State for Chart Data
+  const [investmentCountdowns, setInvestmentCountdowns] = useState({});
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -68,6 +69,52 @@ const formattedData = response.data.investments
     fetchDashboardData();
   }, [navigate]);
 
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    if (user?.investments) {
+      const countdowns = {};
+
+      user.investments.forEach((investment) => {
+        if (investment.status === "active") {
+          const endTime = new Date(investment.maturityDate).getTime();
+          countdowns[investment.plan] = endTime;
+        }
+      });
+
+      setInvestmentCountdowns(countdowns);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setInvestmentCountdowns((prevCountdowns) => {
+        const updatedCountdowns = {};
+        Object.keys(prevCountdowns).forEach((plan) => {
+          const timeLeft = prevCountdowns[plan] - new Date().getTime();
+          updatedCountdowns[plan] = timeLeft > 0 ? timeLeft : 0;
+        });
+        return updatedCountdowns;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (ms) => {
+    if (ms <= 0) return "Completed";
+    const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((ms / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((ms / (1000 * 60)) % 60);
+    const seconds = Math.floor((ms / 1000) % 60);
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  };
 
 
   
@@ -209,23 +256,64 @@ const formattedData = response.data.investments
 </div>
 
       {/* ✅ User Investments */}
-      <h2>Your Investments</h2>
-      <div className="investments-container">
-        {user?.investments?.length ? (
-          user.investments.map((investment, index) => (
-            <div key={index} className="investment-card">
-              <p><strong>Plan:</strong> {investment.plan}</p>
-              <p><strong>Amount:</strong> {new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(investment.amount)}</p>
-              <p><strong>Status:</strong> {investment.status}</p>
-              <p><strong>Start Date:</strong> {new Date(investment.startDate).toDateString()}</p>
-              <p><strong>Maturity Date:</strong> {new Date(investment.maturityDate).toDateString()}</p>
-              <p><strong>Expected Returns:</strong> {new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(investment.expectedReturns)}</p>
-            </div>
-          ))
-        ) : (
-          <p style={{ color: "white" }}>No active investments</p>
-        )}
-      </div>
+     {/* ✅ User Investments */}
+<h2>Your Investments</h2>
+<div className="investments-container">
+  {user?.investments?.length ? (
+    <div className="table-wrapper">
+      <table className="investment-table">
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>Maturity Date</th>
+            <th>Countdown</th>
+            <th>Expected Returns</th>
+          </tr>
+        </thead>
+        <tbody>
+          {user.investments.map((investment, index) => (
+            <tr key={index}>
+              <td>{investment.plan}</td>
+              <td>
+                {new Intl.NumberFormat("en-NG", {
+                  style: "currency",
+                  currency: "NGN",
+                }).format(investment.amount)}
+              </td>
+              <td>{investment.status}</td>
+              <td>{new Date(investment.startDate).toDateString()}</td>
+              <td>{new Date(investment.maturityDate).toDateString()}</td>
+              <td>
+               {investment.status === "active"
+               ? new Date(investment.maturityDate) > new Date()
+              ? formatTime(new Date(investment.maturityDate) - new Date())
+              : "N/A"
+             : "N/A"}
+          </td>
+              <td>
+                {new Intl.NumberFormat("en-NG", {
+                  style: "currency",
+                  currency: "NGN",
+                }).format(investment.expectedReturns)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <p style={{ color: "white" }}>No active investments</p>
+  )}
+</div>
+
+
+
+
+
+
 
       {/* ✅ Investment Form */}
       <h2>Invest Now</h2>
