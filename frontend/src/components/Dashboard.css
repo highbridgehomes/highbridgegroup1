@@ -202,33 +202,25 @@
   }
   
   /* Enable scrolling inside table rows on small screens */
-  @media screen and (max-width: 768px) {
-    .table-wrapper {
-      overflow-y: auto;
-      max-height: 300px; /* Adjust height as needed */
-      display: block;
-    }
-  
-    .investment-table {
-      display: block;
-    }
-  
-    .investment-table thead {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-    }
-  
-    .investment-table tbody {
-      display: block;
-      overflow-y: auto;
-      max-height: 250px;
-      width: 100%;
-    }
-  
-    .investment-table tr {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-    }
+  /* Small screens adjustments */
+@media screen and (max-width: 768px) {
+  .table-wrapper {
+    overflow-x: auto;
   }
+
+  .investment-table {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+
+  .investment-table th, 
+  .investment-table td {
+    padding: 6px; /* Reduce padding to fit content */
+  }
+
+  /* Allow text wrapping only when necessary */
+  .investment-table th, 
+  .investment-table td {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
