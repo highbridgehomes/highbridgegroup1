@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer"; // ✅ Import Footer
 import "./Dashboard.css"; // ✅ Import Styles
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts"; // ✅ Import Recharts
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid  } from "recharts"; // ✅ Import Recharts
 
 const investmentPlans = [
   { label: "25% ROI in 6 Months", value: "6m", minAmount: 500000 },
@@ -29,7 +29,7 @@ const Dashboard = () => {
         const token = localStorage.getItem("token");
         if (!token) {
           console.warn("🔴 No token found, redirecting to login...");
-          navigate("/login"); // Redirect if not logged in
+          navigate("/login");
           return;
         }
         console.log("🟢 Fetching dashboard data...");
@@ -41,16 +41,22 @@ const Dashboard = () => {
 
         setUser(response.data);
 
-        // ✅ Process Data for Chart
-        const formattedData = response.data.investments
-  ? response.data.investments.map((investment) => ({
+       // ✅ Process Data for Chart
+const formattedData = response.data.investments
+? response.data.investments.map((investment) => {
+    const plan = investmentPlans.find((p) => p.value === investment.plan); // ✅ Match using value instead of label
+    const percentage = plan ? parseFloat(plan.label.match(/(\d+)%/)[1]) : 0; // ✅ Extract percentage correctly
+    const expectedReturns = plan ? (investment.amount * percentage) / 100 : 0;
+    return {
       name: investment.plan,
       amount: investment.amount,
-    }))
-  : [];
-  console.log("📊 Formatted Investment Data:", formattedData);
+      expectedReturns,
+    };
+  })
+: [];
+
+        console.log("📊 Formatted Investment Data:", formattedData);
         setInvestmentData(formattedData);
-        
       } catch (error) {
         console.error("🛑 Error fetching dashboard data:", error.response?.data || error.message);
         setErrorMessage("⚠️ Failed to load dashboard. Please try again.");
@@ -159,22 +165,48 @@ const Dashboard = () => {
       </div>
 
       {/* ✅ Investment Chart */}
-      <h2>Investment Overview</h2>
-      <div style={{ width: "100%", height: "400px", margin: "0 auto" }}>
-        {investmentData.length ? (
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={investmentData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="amount" fill="#4CAF50" />
-            </BarChart>
-          </ResponsiveContainer>
-        ) : (
-          <p style={{ color: "white" }}>Loading chart data...</p>
-        )}
-      </div>
+      {/* ✅ Investment Chart */}
+<h2 style={{ color: "white" }}>Investment Overview</h2>
+<div style={{ width: "100%", height: "400px" }}>
+  {investmentData.length ? (
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={investmentData}>
+        {/* ✅ White Grid Lines */}
+        <CartesianGrid stroke="white" strokeDasharray="3 3" />
+        
+        {/* ✅ White Axis Lines & Text */}
+        <XAxis dataKey="name" tick={{ fill: "white" }} stroke="white" />
+        <YAxis tick={{ fill: "white" }} stroke="white" />
+        
+        {/* ✅ Tooltip with Yellow Expected Returns */}
+        <Tooltip 
+          contentStyle={{ backgroundColor: "#333", color: "white" }} 
+          itemStyle={{ color: "yellow" }} 
+        />
+
+        {/* ✅ Legend Styling */}
+        <Legend 
+          formatter={(value, entry) => (
+            <span style={{ color: entry.color === "#FFC107" ? "yellow" : "white" }}>
+              {value}
+            </span>
+          )} 
+        />
+        
+        {/* ✅ Bar Colors */}
+        <Bar dataKey="amount" fill="#4CAF50" name="Investment Amount" />
+        <Bar 
+  dataKey="expectedReturns" 
+  fill="#FFC107" 
+  name="Expected Returns"
+  label={{ position: "top", fill: "white" }} // 🔥 Ensures values show above bars
+/>
+      </BarChart>
+    </ResponsiveContainer>
+  ) : (
+    <p style={{ color: "white" }}>No investment data available.</p>
+  )}
+</div>
 
       {/* ✅ User Investments */}
       <h2>Your Investments</h2>
