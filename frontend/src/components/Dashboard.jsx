@@ -6,10 +6,10 @@ import "./Dashboard.css"; // ✅ Import Styles
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid  } from "recharts"; // ✅ Import Recharts
 
 const investmentPlans = [
-  { label: "25% ROI in 6 Months", value: "6m", minAmount: 500000 },
-  { label: "30% ROI in 9 Months", value: "9m", minAmount: 500000 },
-  { label: "50% ROI in 12 Months", value: "12m", minAmount: 500000 },
-  { label: "75% ROI in 18 Months", value: "18m", minAmount: 500000 },
+  { label: "25% ROI in 6 Months", value: "6months", minAmount: 500000 },
+  { label: "30% ROI in 9 Months", value: "9months", minAmount: 500000 },
+  { label: "50% ROI in 12 Months", value: "12months", minAmount: 500000 },
+  { label: "75% ROI in 18 Months", value: "18months", minAmount: 500000 },
 ];
 
 const Dashboard = () => {

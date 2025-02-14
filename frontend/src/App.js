@@ -46,7 +46,7 @@ const App = () => {
       <ScrollToTop /> {/* Add the ScrollToTop component here */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/agrovest" element={<AgrovestLandingPage />} /> {/* New route for AgrovestLandingPage */}
+        <Route path="/flipvest" element={<AgrovestLandingPage />} /> {/* New route for AgrovestLandingPage */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<ServicesPage />} />
