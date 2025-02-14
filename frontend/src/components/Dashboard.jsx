@@ -23,6 +23,8 @@ const Dashboard = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [investmentData, setInvestmentData] = useState([]); // ✅ State for Chart Data
   const [investmentCountdowns, setInvestmentCountdowns] = useState({});
+  const [investments, setInvestments] = useState([]);
+  const [totalExpectedReturns, setTotalExpectedReturns] = useState(0);
 
   useEffect(() => {
     const fetchDashboardData = async () => {

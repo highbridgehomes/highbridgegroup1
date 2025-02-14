@@ -37,15 +37,19 @@
   max-width: 800px;
   background: var(--card-bg);
   padding: 30px;
+  background: rgba(0, 128, 0, 0.829); /* Green Background */
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   text-align: center;
 }
   
 .dashboard-header h1 {
-  color: var(--text-dark);
-  font-size: 26px;
+  color: white; /* Sets text color to white */
+  font-size: 28px; /* Slightly larger for better visibility */
+  font-weight: bold; /* Makes the text stand out */
   margin-bottom: 20px;
+  text-transform: uppercase; /* Optional: Makes text all uppercase */
+  letter-spacing: 1px; /* Adds slight spacing for a modern look */
 }
   
   .dashboard-header p {
