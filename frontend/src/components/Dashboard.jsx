@@ -23,8 +23,7 @@ const Dashboard = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [investmentData, setInvestmentData] = useState([]); // ✅ State for Chart Data
   const [investmentCountdowns, setInvestmentCountdowns] = useState({});
-  const [investments, setInvestments] = useState([]);
-  const [totalExpectedReturns, setTotalExpectedReturns] = useState(0);
+ 
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -36,8 +35,9 @@ const Dashboard = () => {
           return;
         }
         console.log("🟢 Fetching dashboard data...");
+        //http://localhost:5000/api/dashboard
 
-        const response = await axios.get("http://localhost:5000/api/dashboard", {
+        const response = await axios.get("https://highbridge-api-6.onrender.com/api/dashboard", {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log("✅ API Response:", response.data);
@@ -173,7 +173,7 @@ const formattedData = response.data.investments
         console.log("🚀 Sending Payment Data:", paymentData);
 
         const paymentResponse = await axios.post(
-            "http://localhost:5000/api/payments/initiate-flutterwave-payment",
+            "https://highbridge-api-6.onrender.com/api/payments/initiate-flutterwave-payment",
             paymentData,
             { headers: { Authorization: `Bearer ${token}` } }
         );

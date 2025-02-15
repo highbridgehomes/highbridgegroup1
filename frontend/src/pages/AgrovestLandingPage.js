@@ -91,7 +91,7 @@ const AgrovestLandingPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("https://highbridge-api-4.onrender.com/api/auth/register", user);
+      const response = await axios.post("https://highbridge-api-6.onrender.com/api/auth/register", user);
       setSubmissionSuccess(response.data.message);
       setUser({ email: "", phone: "", name: "", password: "" }); // Reset fields
       
@@ -108,7 +108,7 @@ const AgrovestLandingPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("https://highbridge-api-4.onrender.com/api/auth/login", loginData);
+      const response = await axios.post("https://highbridge-api-6.onrender.com/api/auth/login", loginData);
       console.log("Login response:", response.data); // Debugging
   
       if (response.data.token) {
