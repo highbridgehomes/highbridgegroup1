@@ -37,7 +37,7 @@ const Dashboard = () => {
         console.log("🟢 Fetching dashboard data...");
         //http://localhost:5000/api/dashboard
 
-        const response = await axios.get("https://highbridge-api-6.onrender.com/api/dashboard", {
+        const response = await axios.get("http://localhost:5000/api/dashboard", {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log("✅ API Response:", response.data);
@@ -160,6 +160,8 @@ const formattedData = response.data.investments
             ? (investmentAmount * parseFloat(planDetails.label.match(/\d+/)[0]) / 100) 
             : 0;
 
+       const webhookUrl = "https://your-backend-url.com/api/payments/webhook"; // ✅ Corrected URL
+
         const paymentData = {
             amount: investmentAmount,
             plan: selectedPlan,
@@ -168,12 +170,13 @@ const formattedData = response.data.investments
             currency: "NGN",
             fullName: user.name || "",
             expectedReturns,
+            webhookUrl  // ✅ Include Webhook URL
         };
 
         console.log("🚀 Sending Payment Data:", paymentData);
 
         const paymentResponse = await axios.post(
-            "https://highbridge-api-6.onrender.com/api/payments/initiate-flutterwave-payment",
+            "http://localhost:5000/api/payments/initiate-flutterwave-payment",
             paymentData,
             { headers: { Authorization: `Bearer ${token}` } }
         );

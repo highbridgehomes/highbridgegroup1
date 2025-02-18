@@ -35,6 +35,7 @@ import StaffReportList from "./components/StaffReportList"; // Import StaffRepor
 import RealtorList from "./components/RealtorList"; 
 import DigitalMarketingTable from './components/DigitalMarketingTable'; // Import DigitalMarketingTable
 import AgrovestLandingPage from "./pages/AgrovestLandingPage"; // Import AgrovestLandingPage
+import AgrovestWebinarPage from "./pages/AgrovestWebinarPage"; // Import AgrovestLandingPage
 import DashboardPage from './components/Dashboard';
 
 
@@ -47,6 +48,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/flipvest" element={<AgrovestLandingPage />} /> {/* New route for AgrovestLandingPage */}
+        <Route path="/webiner" element={<AgrovestWebinarPage />} /> {/* New route for AgrovestLandingPage */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<ServicesPage />} />
