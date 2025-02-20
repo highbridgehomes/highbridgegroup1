@@ -31,7 +31,13 @@ const AgrovestLandingPage = () => {
   const navigate = useNavigate(); // Add this line
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({ email: "", phone: "", name: "", password: "" });
+  const [user, setUser] = useState({ 
+    email: "", 
+    phone: "", 
+    name: "", 
+    password: "", 
+    referralCode: "" // <-- Added referralCode field
+  });
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [submissionSuccess, setSubmissionSuccess] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -79,7 +85,11 @@ const AgrovestLandingPage = () => {
 
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUser(prev => {
+      const updatedUser = { ...prev, [e.target.name]: e.target.value };
+      console.log("Updated user state:", updatedUser); // Debugging
+      return updatedUser;
+    });
   };
   
   // Handle Login Input Change
@@ -87,13 +97,17 @@ const AgrovestLandingPage = () => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log("User data being sent:", user); // Debugging
     try {
-      const response = await axios.post("https://highbridge-api-6.onrender.com/api/auth/register", user);
+      console.log("Sending data:", user);
+      const response = await axios.post("http://localhost:5000/api/auth/register", user);
       setSubmissionSuccess(response.data.message);
-      setUser({ email: "", phone: "", name: "", password: "" }); // Reset fields
+      setUser({ email: "", phone: "", name: "", password: "", referralCode: "" }); // Reset fields
       
       // Switch to login form
       setIsRegistering(false);
@@ -102,6 +116,11 @@ const AgrovestLandingPage = () => {
     }
     setLoading(false);
   };
+
+
+
+
+
 
 
   const handleLoginSubmit = async (e) => {
@@ -351,10 +370,45 @@ const AgrovestLandingPage = () => {
 }}>
   Register
 </h2>
-                <input type="text" name="name" placeholder="Full Name" value={user.name} onChange={handleChange} required />
-                <input type="email" name="email" placeholder="Email" value={user.email} onChange={handleChange} required />
-                <input type="tel" name="phone" placeholder="Phone Number" value={user.phone} onChange={handleChange} required />
-                <input type="password" name="password"placeholder="Enter your password"value={user.password} onChange={handleChange} required/>
+<input 
+    type="text" 
+    name="name" 
+    value={user.name} 
+    onChange={handleChange} 
+    placeholder="Full Name" 
+    required 
+  />
+  <input 
+    type="email" 
+    name="email" 
+    value={user.email} 
+    onChange={handleChange} 
+    placeholder="Email" 
+    required 
+  />
+  <input 
+    type="text" 
+    name="phone" 
+    value={user.phone} 
+    onChange={handleChange} 
+    placeholder="Phone Number" 
+    required 
+  />
+  <input 
+    type="password" 
+    name="password" 
+    value={user.password} 
+    onChange={handleChange} 
+    placeholder="Password" 
+    required 
+  />
+  <input 
+    type="text" 
+    name="referralCode" 
+    value={user.referralCode} 
+    onChange={handleChange} 
+    placeholder="Referral Code (Optional)" 
+  />
                 <button type="submit" disabled={loading}>{loading ? "Processing..." : "Register"}</button>
                 <p>Already have an account? <span onClick={switchForm} className="toggle-link">Login</span></p>
               </form>

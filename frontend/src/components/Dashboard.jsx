@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer"; // ✅ Import Footer
 import "./Dashboard.css"; // ✅ Import Styles
+import KYCForm from "../components/KYCForm"; // ✅ Import KYCForm component
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid  } from "recharts"; // ✅ Import Recharts
+
 
 const investmentPlans = [
   { label: "25% ROI in 6 Months", value: "6months", minAmount: 500000 },
@@ -23,6 +25,11 @@ const Dashboard = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [investmentData, setInvestmentData] = useState([]); // ✅ State for Chart Data
   const [investmentCountdowns, setInvestmentCountdowns] = useState({});
+  const [referralCode, setReferralCode] = useState("");
+const fullReferralCode = `REF-${referralCode}`;
+const [isKycModalOpen, setKycModalOpen] = useState(false);
+
+  
  
 
   useEffect(() => {
@@ -41,9 +48,10 @@ const Dashboard = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log("✅ API Response:", response.data);
+        console.log("📌 Referral Code from API:", response.data.referralCode);
 
         setUser(response.data);
-
+        setReferralCode(response.data.referralCode || "N/A"); // ✅ Store referral code
        // ✅ Process Data for Chart
 const formattedData = response.data.investments
 ? response.data.investments.map((investment) => {
@@ -70,12 +78,6 @@ const formattedData = response.data.investments
 
     fetchDashboardData();
   }, [navigate]);
-
-
-
-
-
-
 
 
 
@@ -213,8 +215,40 @@ const formattedData = response.data.investments
           <p><strong>Phone:</strong> {user?.phone || "Not Provided"}</p>
           <p><strong>KYC Verified:</strong> {user?.kycVerified ? "Yes" : "No"}</p>
           <p><strong>Total Investments:</strong> {user?.totalInvestments}</p>
+          <p><strong>Referral Code:</strong> {user?.referralCode || "Not Available"}</p> {/* ✅ Add Referral Code */}
         </div>
       </div>
+
+      {/* KYC Section */}
+      <div className="kyc-section">
+      <h2>KYC Verification</h2>
+        {user?.kycVerified ? (
+          <p style={{ color: "green" }}>✅ Your KYC is Verified</p>
+        ) : (
+          <>
+          <p style={{ color: "red" }}>⚠️ Your KYC is NOT Verified. Please submit your KYC details.</p>
+          <button className="open-modal-btn" onClick={() => setKycModalOpen(true)}>
+            Submit KYC
+          </button>
+        </>
+      )}
+    </div>
+
+      {/* KYC Modal */}
+       {/* Custom Modal */}
+       {isKycModalOpen && (
+        <div className="custom-modal-overlay" onClick={() => setKycModalOpen(false)}>
+          <div className="custom-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>KYC Verification</h2>
+              <button className="close-modal-btn" onClick={() => setKycModalOpen(false)}>X</button>
+            </div>
+            <div className="modal-body">
+              <KYCForm user={user} onKycUpdate={() => window.location.reload()} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ✅ Investment Chart */}
       {/* ✅ Investment Chart */}
@@ -313,12 +347,6 @@ const formattedData = response.data.investments
     <p style={{ color: "white" }}>No active investments</p>
   )}
 </div>
-
-
-
-
-
-
 
       {/* ✅ Investment Form */}
       <h2>Invest Now</h2>

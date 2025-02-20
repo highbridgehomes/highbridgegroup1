@@ -28,17 +28,7 @@ const investmentPlans = [
 const AgrovestWebinarPage  = () => {
     const [currentImage, setCurrentImage] = useState(0);
     const navigate = useNavigate(); // Add this line
-    const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState({ email: "", phone: "", name: "", password: "" });
-    const [loginData, setLoginData] = useState({ email: "", password: "" });
-    const [submissionSuccess, setSubmissionSuccess] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-    const [isRegistering, setIsRegistering] = useState(true);
-    const [isChatOpen, setIsChatOpen] = useState(false); // Chatbot state
-  
-    //const [showRegistrationForm, setShowRegistrationForm] = useState(false);
-    //const [showLoginForm, setShowLoginForm] = useState(false);
+    
   
     // Create refs for each section
     const aboutRef = useRef(null);
@@ -68,42 +58,40 @@ const AgrovestWebinarPage  = () => {
   
       return () => clearInterval(interval);
     }, []);
-  
+
+    const webinarDate = "Feb 27, 2025"; 
+    const webinarTime = "10 AM";
    
   
 
  return (
-     <div className="landing-page">
-        {/* Hero Section */}
-        <div className="hero-section">
-          <div
-            className="hero-background"
-            style={{ backgroundImage: `url(${images[currentImage]})` }}
-          />
-          <div className="hero-content">
-          <h1
-          style={{
-         color: "#fff",
-    }}
-  >
-    💰 Secure Your Future: Profitable Agricultural Investments in Nigeria! 🌾📈
-  </h1>
+    <div className="landing-page">
+    {/* Hero Section */}
+    <div className="hero-section">
+      <div
+        className="hero-background"
+        style={{ backgroundImage: `url(${images[currentImage]})` }}
+      />
+      <div className="hero-content">
+        <h1 className="hero-title">
+          💰 Secure Your Future: Profitable Agricultural Investments in Nigeria – Join Our Exclusive Webinar! 🌾📈
+        </h1>
   
-  <div className="center-button-container">
-  <button 
-    className="transparent"
-    onClick={() => window.open("https://example.com/webinar", "_blank", "noopener,noreferrer")}
-  >
-    Register Now
-  </button>
-
-  <p className="cta-text">
-  Join Us for the Agrovest Webinar on  
-  <span className="highlighted-text">July 20, 2024!</span>
-  </p>
-</div>
+        <div className="center-button-container">
+          <button 
+            className="transparent"
+            onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSeAcEPyjL1F391yAP9zcuxW7Jade3tBY4nhhnZhoxaNsj0FzA/viewform", "_blank", "noopener,noreferrer")}
+          >
+            Register Now
+          </button>
+  
+          <p className="cta-text">
+            Join Us for the Agrovest Webinar on  
+            <span className="highlighted-text">{`${webinarDate} - ${webinarTime}!`}</span>
+          </p>
+        </div>
+      </div>
     </div>
- </div>
        
   
  {/* About Section */}
@@ -121,11 +109,11 @@ const AgrovestWebinarPage  = () => {
   <p>
     <button
      className="transparent"
-     onClick={() => window.open("https://example.com/webinar", "_blank", "noopener,noreferrer")}
+     onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSeAcEPyjL1F391yAP9zcuxW7Jade3tBY4nhhnZhoxaNsj0FzA/viewform", "_blank", "noopener,noreferrer")}
    >
      Register Now
     </button> Join Us for the Agrovest Webinar on  
-    <span className="highlighted-text">July 20, 2024!</span>
+    <span className="highlighted-text">{`${webinarDate} - ${webinarTime}!`}</span>
   </p>
   
   </div>
