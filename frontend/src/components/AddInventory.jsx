@@ -33,7 +33,7 @@ const AddInventory = () => {
       return;
     }
 
-    // Convert unitPrice to null if empty
+    // Convert unitPrice to null if empty wire
     const submissionData = {
       ...inventory,
       unitPrice: inventory.unitPrice === '' ? null : inventory.unitPrice, 
