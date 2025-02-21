@@ -105,7 +105,7 @@ const AgrovestLandingPage = () => {
     console.log("User data being sent:", user); // Debugging
     try {
       console.log("Sending data:", user);
-      const response = await axios.post("http://localhost:5000/api/auth/register", user);
+      const response = await axios.post("https://highbridgeapi.onrender.com/api/auth/register", user);
       setSubmissionSuccess(response.data.message);
       setUser({ email: "", phone: "", name: "", password: "", referralCode: "" }); // Reset fields
       
@@ -126,14 +126,23 @@ const AgrovestLandingPage = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+  
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", loginData);
+      const response = await axios.post("https://highbridgeapi.onrender.com/api/auth/login", loginData);
       console.log("Login response:", response.data); // Debugging
   
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
-        navigate(`/dashboard/${response.data.user.id}`); // Use correct ID from API response
+  
+        const userRole = response.data.user.role; // Get user role from response
+  
+        // Redirect based on role
+        if (userRole === "admin") {
+          navigate("/admin/dashboard"); // Redirect admin
+        } else {
+          navigate(`/dashboard/${response.data.user.id}`); // Redirect regular user
+        }
       } else {
         console.log("No token received, possible error:", response.data);
         setSubmissionSuccess("Login failed. Invalid credentials.");
@@ -142,6 +151,7 @@ const AgrovestLandingPage = () => {
       console.error("Login error:", error.response?.data || error.message);
       setSubmissionSuccess("Login failed. Please check your credentials.");
     }
+  
     setLoading(false);
   };
 

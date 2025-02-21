@@ -42,7 +42,7 @@ const AddInventory = () => {
     console.log("Submitting inventory data:", submissionData);
 
     axios
-      .post('https://highbridge-api-7.onrender.com/api/energy-inventory', submissionData)
+      .post('https://highbridgeapi.onrender.com/api/energy-inventory', submissionData)
       .then((response) => {
         console.log("Response from API:", response.data);
         alert(response.data.message);

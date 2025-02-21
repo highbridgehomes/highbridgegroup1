@@ -37,6 +37,7 @@ import DigitalMarketingTable from './components/DigitalMarketingTable'; // Impor
 import AgrovestLandingPage from "./pages/AgrovestLandingPage"; // Import AgrovestLandingPage
 import AgrovestWebinarPage from "./pages/AgrovestWebinarPage"; // Import AgrovestLandingPage
 import DashboardPage from './components/Dashboard';
+import AdminDashboard from "./components/AdminDashboard"; // Import Admin Dashboard
 
 
 
@@ -89,7 +90,7 @@ const App = () => {
          {/* Digital Marketing Registrations Route */}
          <Route path="/digital-marketing-registrations" element={<DigitalMarketingTable />} /> {/* New route for viewing all digital marketing registrations */}
          <Route path="/dashboard/:userId" element={<DashboardPage />} />
-
+         <Route path="/admin/dashboard" element={<AdminDashboard />} /> {/* Admin Dashboard Route */}
       </Routes>
     </Router>
   );

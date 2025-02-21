@@ -44,7 +44,7 @@ const [isKycModalOpen, setKycModalOpen] = useState(false);
         console.log("🟢 Fetching dashboard data...");
         //http://localhost:5000/api/dashboard
 
-        const response = await axios.get("http://localhost:5000/api/dashboard", {
+        const response = await axios.get("https://highbridgeapi.onrender.com/api/dashboard", {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log("✅ API Response:", response.data);
@@ -178,7 +178,7 @@ const formattedData = response.data.investments
         console.log("🚀 Sending Payment Data:", paymentData);
 
         const paymentResponse = await axios.post(
-            "http://localhost:5000/api/payments/initiate-flutterwave-payment",
+            "https://highbridgeapi.onrender.com/api/payments/initiate-flutterwave-payment",
             paymentData,
             { headers: { Authorization: `Bearer ${token}` } }
         );

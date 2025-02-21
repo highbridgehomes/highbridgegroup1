@@ -10,7 +10,7 @@ const EnergyInventoryList = () => {
 
   useEffect(() => {
     axios
-      .get('https://highbridge-api-7.onrender.com/api/energy-inventory')
+      .get('https://highbridgeapi.onrender.com/api/energy-inventory')
       .then((response) => {
         setInventoryItems(response.data);
       })
@@ -34,7 +34,7 @@ const EnergyInventoryList = () => {
 
   const handleUpdateSubmit = (id) => {
     axios
-      .put(`https://highbridge-api-7.onrender.com/api/energy-inventory/${id}`, updatedItem)
+      .put(`https://highbridgeapi.onrender.com/api/energy-inventory/${id}`, updatedItem)
       .then((response) => {
         alert(response.data.message);
         setInventoryItems((prevItems) =>
@@ -50,7 +50,7 @@ const EnergyInventoryList = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://highbridge-api-7.onrender.com/api/energy-inventory/${id}`)
+      .delete(`https://highbridgeapi.onrender.com/api/energy-inventory/${id}`)
       .then((response) => {
         alert(response.data.message);
         setInventoryItems((prevItems) => prevItems.filter((item) => item._id !== id));
