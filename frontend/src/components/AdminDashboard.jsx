@@ -1,26 +1,72 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "./Sidebar";
 import axios from "axios";
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
+  const [kycRequests, setKycRequests] = useState([]);
+  const [selectedKYC, setSelectedKYC] = useState(null);
+  const [investments, setInvestments] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/admin/users", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
     fetchUsers();
+    fetchKYCRequests();
+    fetchInvestments();
   }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("https://highbridgeapi-1.onrender.com/api/admin/users", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUsers(Array.isArray(response.data) ? response.data.filter(user => user?.name) : []);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      setUsers([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchKYCRequests = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("https://highbridgeapi-1.onrender.com/api/admin/kyc-requests", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setKycRequests(Array.isArray(response.data) ? response.data.filter(user => user?.kycData?.residentialAddress) : []);
+    } catch (error) {
+      console.error("Error fetching KYC requests:", error);
+      setKycRequests([]);
+    }
+  };
+
+  const fetchInvestments = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("https://highbridgeapi-1.onrender.com/api/admin/investments", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setInvestments(response.data || []);
+    } catch (error) {
+      console.error("Error fetching investments:", error);
+      setInvestments([]);
+    }
+  };
+
+  const handleApproveKYC = async (userId, status) => {
+    try {
+      await axios.post(`https://highbridgeapi-1.onrender.com/api/admin/kyc-status/${userId}`, { status });
+      fetchKYCRequests();
+    } catch (error) {
+      console.error("Error updating KYC status:", error);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -28,17 +74,135 @@ const AdminDashboard = () => {
     navigate("/login");
   };
 
+
+  const printKYC = () => {
+    window.print(); // Opens print preview
+  };
+
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="admin-container">
+      <Sidebar />
+      <div className="admin-content">
+        <h1>Admin Dashboard</h1>
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+
+        <section>
+          <h2>Users</h2>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map(user => (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.name || "N/A"}</td>
+                    <td>{user.email || "N/A"}</td>
+                    <td>
+                      <button onClick={() => setSelectedKYC(user)}>View KYC</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </section>
+
+        {selectedKYC && (
+  <div className="kyc-modal">
+    <div className="kyc-modal-content" id="kyc-print-content">
       
-      <h2>Registered Users</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name} - {user.email}</li>
-        ))}
-      </ul>
+      {/* Hero Image */}
+      <img src="/assets/images/hero/agrovestimage.jpg" alt="KYC Banner" className="kyc-hero" />
+
+      <h2>KYC Details</h2>
+      
+      <div className="kyc-data">
+        <p><strong>Address:</strong> {selectedKYC.kycData?.residentialAddress || "N/A"}</p>
+        <p><strong>Date of Birth:</strong> {selectedKYC.kycData?.dateOfBirth || "N/A"}</p>
+        <p><strong>Nationality:</strong> {selectedKYC.kycData?.nationality || "N/A"}</p>
+        <p><strong>Marital Status:</strong> {selectedKYC.kycData?.maritalStatus || "N/A"}</p>
+        <p><strong>Occupation:</strong> {selectedKYC.kycData?.occupation || "N/A"}</p>
+        <p><strong>Place of Work:</strong> {selectedKYC.kycData?.placeOfWork || "N/A"}</p>
+        <p><strong>Work Address:</strong> {selectedKYC.kycData?.workAddress || "N/A"}</p>
+        <p><strong>ID Document Type:</strong> {selectedKYC.kycData?.idDocumentType || "N/A"}</p>
+
+        <h3>Next of Kin</h3>
+        <p><strong>Name:</strong> {selectedKYC.kycData?.nextOfKin?.name || "N/A"}</p>
+        <p><strong>Phone:</strong> {selectedKYC.kycData?.nextOfKin?.phone || "N/A"}</p>
+        <p><strong>Relationship:</strong> {selectedKYC.kycData?.nextOfKin?.relationship || "N/A"}</p>
+        <p><strong>Address:</strong> {selectedKYC.kycData?.nextOfKin?.address || "N/A"}</p>
+
+        <h3>Bank Details</h3>
+        <p><strong>Bank Name:</strong> {selectedKYC.kycData?.bankDetails?.bankName || "N/A"}</p>
+        <p><strong>Account Number:</strong> {selectedKYC.kycData?.bankDetails?.accountNumber || "N/A"}</p>
+        <p><strong>Account Name:</strong> {selectedKYC.kycData?.bankDetails?.accountName || "N/A"}</p>
+
+        <h3>Corporate Info</h3>
+        <p><strong>Corporate Name:</strong> {selectedKYC.kycData?.corporateInfo?.corporateName || "N/A"}</p>
+        <p><strong>Corporate Address:</strong> {selectedKYC.kycData?.corporateInfo?.corporateAddress || "N/A"}</p>
+        <p><strong>Contact Name:</strong> {selectedKYC.kycData?.corporateInfo?.contactName || "N/A"}</p>
+        <p><strong>Correspondence Address:</strong> {selectedKYC.kycData?.corporateInfo?.correspondenceAddress || "N/A"}</p>
+        <p><strong>Corporate Phone:</strong> {selectedKYC.kycData?.corporateInfo?.corporatePhone || "N/A"}</p>
+        <p><strong>Corporate Email:</strong> {selectedKYC.kycData?.corporateInfo?.corporateEmail || "N/A"}</p>
+      </div>
+
+      {/* Buttons */}
+      <div className="kyc-buttons">
+        <button className="approve-btn" onClick={() => handleApproveKYC(selectedKYC.id, "approved")}>
+          ✅ Approve
+        </button>
+        <button className="reject-btn" onClick={() => handleApproveKYC(selectedKYC.id, "rejected")}>
+          ❌ Reject
+        </button>
+        <button className="print-btn" onClick={printKYC}>
+          🖨️ Print KYC
+        </button>
+        <button className="close-btn" onClick={() => setSelectedKYC(null)}>
+          🔲 Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+        <section>
+          <h2>Investments</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {investments.length > 0 ? (
+                investments.map(investment => (
+                  investment.user ? (
+                    <tr key={investment.id}>
+                      <td>{investment.id}</td>
+                      <td>{investment.user.name || "N/A"} ({investment.user.email || "N/A"})</td>
+                      <td>${investment.amount}</td>
+                    </tr>
+                  ) : null
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3">No investments found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </section>
+      </div>
     </div>
   );
 };

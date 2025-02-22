@@ -44,7 +44,7 @@ const [isKycModalOpen, setKycModalOpen] = useState(false);
         console.log("🟢 Fetching dashboard data...");
         //http://localhost:5000/api/dashboard
 
-        const response = await axios.get("https://highbridgeapi.onrender.com/api/dashboard", {
+        const response = await axios.get("https://highbridgeapi-1.onrender.com/api/dashboard", {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log("✅ API Response:", response.data);
@@ -162,7 +162,7 @@ const formattedData = response.data.investments
             ? (investmentAmount * parseFloat(planDetails.label.match(/\d+/)[0]) / 100) 
             : 0;
 
-       const webhookUrl = "https://your-backend-url.com/api/payments/webhook"; // ✅ Corrected URL
+       const webhookUrl = "https://highbridgeapi.onrender.com/api/payments/webhook"; // ✅ Corrected URL
 
         const paymentData = {
             amount: investmentAmount,

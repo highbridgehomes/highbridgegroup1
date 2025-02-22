@@ -105,7 +105,7 @@ const AgrovestLandingPage = () => {
     console.log("User data being sent:", user); // Debugging
     try {
       console.log("Sending data:", user);
-      const response = await axios.post("https://highbridgeapi.onrender.com/api/auth/register", user);
+      const response = await axios.post("https://highbridgeapi-1.onrender.com/api/auth/register", user);
       setSubmissionSuccess(response.data.message);
       setUser({ email: "", phone: "", name: "", password: "", referralCode: "" }); // Reset fields
       
@@ -128,31 +128,33 @@ const AgrovestLandingPage = () => {
     setLoading(true);
   
     try {
-      const response = await axios.post("https://highbridgeapi.onrender.com/api/auth/login", loginData);
+      const response = await axios.post("https://highbridgeapi-1.onrender.com/api/auth/login", loginData);
       console.log("Login response:", response.data); // Debugging
   
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
+      const { token, user } = response.data;
   
-        const userRole = response.data.user.role; // Get user role from response
+      if (token && user) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user)); // Store user data
+  
+        const userRole = user.role; // Get user role from response
   
         // Redirect based on role
         if (userRole === "admin") {
-          navigate("/admin/dashboard"); // Redirect admin
+          navigate("/admin/dashboard", { replace: true }); // Redirect admin
         } else {
-          navigate(`/dashboard/${response.data.user.id}`); // Redirect regular user
+          navigate(`/dashboard/${user.id}`, { replace: true }); // Redirect regular user
         }
       } else {
-        console.log("No token received, possible error:", response.data);
+        console.log("No token or user received, possible error:", response.data);
         setSubmissionSuccess("Login failed. Invalid credentials.");
       }
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
       setSubmissionSuccess("Login failed. Please check your credentials.");
+    } finally {
+      setLoading(false);
     }
-  
-    setLoading(false);
   };
 
 
