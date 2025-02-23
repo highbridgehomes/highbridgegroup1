@@ -39,6 +39,8 @@ const AdminDashboard = () => {
       const response = await axios.get("https://highbridgeapi-1.onrender.com/api/admin/kyc-requests", {
         headers: { Authorization: `Bearer ${token}` },
       });
+  
+      console.log("[KYC DATA]", response.data); // Debugging log
       setKycRequests(Array.isArray(response.data) ? response.data.filter(user => user?.kycData?.residentialAddress) : []);
     } catch (error) {
       console.error("Error fetching KYC requests:", error);
@@ -135,6 +137,14 @@ const AdminDashboard = () => {
         <p><strong>Work Address:</strong> {selectedKYC.kycData?.workAddress || "N/A"}</p>
         <p><strong>ID Document Type:</strong> {selectedKYC.kycData?.idDocumentType || "N/A"}</p>
 
+        {selectedKYC?.kycData?.idDocumentImage && (
+  <img
+  src={`http://localhost:5000/${selectedKYC.kycData.idDocumentImage.replace(/\\/g, "/")}`}
+  alt="Uploaded ID Document"
+  style={{ width: "100%", maxHeight: "300px", objectFit: "contain" }}
+  onError={(e) => console.error("Image failed to load:", e.target.src)}
+/>
+)}
         <h3>Next of Kin</h3>
         <p><strong>Name:</strong> {selectedKYC.kycData?.nextOfKin?.name || "N/A"}</p>
         <p><strong>Phone:</strong> {selectedKYC.kycData?.nextOfKin?.phone || "N/A"}</p>
