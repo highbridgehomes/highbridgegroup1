@@ -14,7 +14,7 @@ const KYCForm = ({ onKycUpdate }) => {
     nextOfKin: {
       name: "",
       phone: "",
-      relationship: "",  // Added relationship field
+      relationship: "",  // Added relationship fiel
       address: ""
     },
     bankDetails: {
